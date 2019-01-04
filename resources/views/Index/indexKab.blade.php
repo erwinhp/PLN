@@ -1,27 +1,24 @@
 @extends('layouts.Dash')
 @section('content')
+<?php
+  $pr='';
+ ?>
 <div class="row">
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
-<?php
-$pr="";
-?>
+<form action="" method="get" >
 <select name="var" class="pull-right clearfix"  onchange="this.form.submit();">
+<option value="0">Kabupaten</option>
 @foreach ($Prov as $p)
 <option value="{{$p->id}}">{{$p->provinsi}}</option>
 @endforeach
 </select>
-
-
-
     <?php
     if (isset($_GET['var'])) {$pr=$_GET['var'];}
-    $provt = DB::select('SELECT id,kabupaten,idProv FROM kab WHERE (idProv)=:k', ['k' => $pr]);
-    echo $pr;
+    $provt = DB::select('SELECT id,kabupaten,idProv FROM kab WHERE (idProv)=:j', ['j' => $pr]);
      ?>
-
-
+</form>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <span class="pull-right clearfix">
       <a href="/admin/kab/create" class="btn btn-xs btn-primary ">Buat Kabupaten</a>
