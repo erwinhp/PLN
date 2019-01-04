@@ -12,7 +12,9 @@ class inKab extends Controller
   public function index()
   {
     $Kab=Kab::all();
-    return view('index.IndexKab')->with('Kab',$Kab);
+    $Prov=Prov::all();
+    return view('index.IndexKab')->with('Kab',$Kab)->with('Prov',$Prov);
+
   return View('index.IndexKab');
   }
 

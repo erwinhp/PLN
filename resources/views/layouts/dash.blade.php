@@ -29,7 +29,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">RASIO LISTRIK</a>
+                <a class="navbar-brand" href="../index.html">RASIO LISTRIK</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -119,7 +119,7 @@
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -209,6 +209,7 @@
     <script src="{{URL::to('/')}}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{URL::to('/')}}/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
     <!-- slimscroll js -->
     <script src="{{URL::to('/')}}/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <!-- main js -->
@@ -225,7 +226,7 @@
     <script src="{{URL::to('/')}}/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="{{URL::to('/')}}/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="{{URL::to('/')}}/assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="{{URL::to('/')}}/assets/libs/js/dashboard-ecommerce.js"></script>
 </body>
 </div>
 </html>
-*
