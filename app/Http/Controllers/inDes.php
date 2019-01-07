@@ -5,14 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Desa;
 use App\Kec;
+use App\Prov;
+use App\Kab;
 class inDes extends Controller
 {
   public function index()
   {
+    $Kab=Kab::all();
+    $Prov=Prov::all();
+    $Kec=kec::all();
+    $Desa=Desa::all();
+    return view('index.IndexDesa')->with('Kab',$Kab)->with('Prov',$Prov)->with('Kec',$Kec)->with('Desa',$Desa);
 
-        $jadwal=jadwal::where('jadwal','>', Carbon::now())->orderBy('idPeg', 'asc')->orderBy('jadwal','asc')->get();
-        $user=user::all();
-          return view('admin.jadwal')->with('jadwal',$jadwal)->with('user',$user);
   }
 
   /**
@@ -43,7 +47,7 @@ $Desa = new Desa;
 $Desa -> Des = $request->Des;
 $Desa -> idKec = $request->idKec;
 $Desa->save();
-return redirect()->action('inDes@create');
+return redirect()->action('inDes@index');
 //return redirect()->action('tugasC@index');
   }
 
@@ -91,7 +95,7 @@ return redirect()->action('inDes@create');
     $Desa->save();
 
     $Desa=Desa::all();
-    return redirect()->action('inDes@create');
+    return redirect()->action('inDes@index');
     //redirect aja
   }
 
@@ -108,7 +112,7 @@ return redirect()->action('inDes@create');
     $Desa=Desa::find($id);
     $Desa=Desa::all();
   //redirect lagi
-  return redirect()->action('jadwalC@index');
+  return redirect()->action('inDes@index');
 
   }
 }

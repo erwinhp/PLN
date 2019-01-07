@@ -9,7 +9,7 @@
     <!-- ============================================================== -->
 <form action="" method="get" >
 <select name="var" class="pull-right clearfix"  onchange="this.form.submit();">
-<option value="0">Kabupaten</option>
+<option value="0">Provinsi</option>
 @foreach ($Prov as $p)
 <option value="{{$p->id}}">{{$p->provinsi}}</option>
 @endforeach
@@ -38,10 +38,10 @@
                             @foreach ($provt as $k)
                         <th>{{$k->kabupaten}}</th>
                         <th><form class="" action="/admin/prov/{{$k->id}}" method="post">
-                        <a href="/admin/prov/{{$k->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
+                        <a href="/admin/kab/{{$k->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
                         </form></th>
                       <th>
-                        <form class="" action="/admin/prov/{{$k->id}}" method="post">
+                        <form class="" action="/admin/kab/{{$k->id}}" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="{{csrf_token()}}">
                           <input type="submit" class="btn btn-xs btn-primary" value="delete">

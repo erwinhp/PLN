@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kab;
+use App\Prov;
 use App\Kec;
 class inKec extends Controller
 {
   public function index()
   {
 
-        $jadwal=jadwal::where('jadwal','>', Carbon::now())->orderBy('idPeg', 'asc')->orderBy('jadwal','asc')->get();
-        $user=user::all();
-          return view('admin.jadwal')->with('jadwal',$jadwal)->with('user',$user);
+    $Kab=Kab::all();
+    $Prov=Prov::all();
+    $Kec=kec::all();
+    return view('index.IndexKec')->with('Kab',$Kab)->with('Prov',$Prov)->with('Kec',$Kec);
+
   }
 
   /**
@@ -43,7 +46,7 @@ class inKec extends Controller
   $kec -> kecamatan = $request->kecamatan;
   $kec -> idKab = $request->idKab;
   $kec->save();
-  return redirect()->action('inKec@create');
+  return redirect()->action('inKec@index');
   //return redirect()->action('tugasC@index');
   }
 
@@ -91,7 +94,7 @@ class inKec extends Controller
 
 
     $kec=Kec::all();
-    return redirect()->action('inKec@create');
+    return redirect()->action('inKec@index');
     //redirect aja
   }
 
@@ -108,7 +111,7 @@ class inKec extends Controller
     $kec=Kec::find($id);
     $kec=Kec::all();
   //redirect lagi
-  return redirect()->action('inKec@create');
+  return redirect()->action('inKec@index');
 
   }
 }
