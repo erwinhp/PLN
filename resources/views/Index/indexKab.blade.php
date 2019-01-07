@@ -8,7 +8,7 @@
     <!-- fixed header  -->
     <!-- ============================================================== -->
 <form action="" method="get" >
-<select name="var" class="pull-right clearfix"  onchange="this.form.submit();">
+<select name="var" class="btn btn-xs btn-primary "  onchange="this.form.submit();">
 <option value="0">Kabupaten</option>
 @foreach ($Prov as $p)
 <option value="{{$p->id}}">{{$p->provinsi}}</option>
@@ -21,7 +21,7 @@
 </form>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <span class="pull-right clearfix">
-      <a href="/admin/kab/create" class="btn btn-xs btn-primary ">Buat Kabupaten</a>
+      <a href="/admin/kab/create" class="pull-right clearfix ">Buat Kabupaten</a>
     </span>
         <div class="card">
             <div class="card-body">
