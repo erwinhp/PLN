@@ -3,15 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\kec;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+=======
+use App\Kab;
+use App\Prov;
+use App\Kec;
+>>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
 class inKec extends Controller
 {
   public function index()
   {
+<<<<<<< HEAD
         $kec=kec::all();
           return view('index.IndexKec')->with('kec',$kec);
+=======
+
+    $Kab=Kab::all();
+    $Prov=Prov::all();
+    $Kec=kec::all();
+    return view('index.IndexKec')->with('Kab',$Kab)->with('Prov',$Prov)->with('Kec',$Kec);
+
+>>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
   }
   /**
    * Show the form for creating a new resource.
@@ -80,8 +95,13 @@ class inKec extends Controller
     $kec-> kecamatan = $request->kecamatan;
     $kec->save();
 
+<<<<<<< HEAD
     $kec=kec::all();
     return redirect()->action('inKec@create');
+=======
+    $kec=Kec::all();
+    return redirect()->action('inKec@index');
+>>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
     //redirect aja
   }
 

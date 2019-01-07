@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\des;
 use App\Kab;
 use App\Prov;
@@ -18,6 +19,22 @@ class inKab extends Controller
     return view('index.IndexDes')->with('Des',$Des)->with('Kab',$Kab)->with('Prov',$Prov);
 
   return View('index.IndexDes');
+=======
+use App\Desa;
+use App\Kec;
+use App\Prov;
+use App\Kab;
+class inDes extends Controller
+{
+  public function index()
+  {
+    $Kab=Kab::all();
+    $Prov=Prov::all();
+    $Kec=kec::all();
+    $Desa=Desa::all();
+    return view('index.IndexDesa')->with('Kab',$Kab)->with('Prov',$Prov)->with('Kec',$Kec)->with('Desa',$Desa);
+
+>>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
   }
 
   /**
@@ -45,6 +62,7 @@ class inKab extends Controller
   public function store(Request $request)
   {
 
+<<<<<<< HEAD
   $des = new des;
   $des -> desa = $request->desa;
   $des -> kabupaten = $request->kabupaten;
@@ -52,6 +70,14 @@ class inKab extends Controller
   $des->save();
   return redirect()->action('inDes@index');
   //return redirect()->action('tugasC@index');
+=======
+$Desa = new Desa;
+$Desa -> Des = $request->Des;
+$Desa -> idKec = $request->idKec;
+$Desa->save();
+return redirect()->action('inDes@index');
+//return redirect()->action('tugasC@index');
+>>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
   }
 
   /**
@@ -100,7 +126,11 @@ class inKab extends Controller
     $des->save();
 
 
+<<<<<<< HEAD
     $des=des::all();
+=======
+    $Desa=Desa::all();
+>>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
     return redirect()->action('inDes@index');
     //redirect aja
   }
