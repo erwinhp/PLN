@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Kab;
-use App\Kec;
+use App\kec;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 class inKec extends Controller
 {
   public function index()
   {
-
-        $jadwal=jadwal::where('jadwal','>', Carbon::now())->orderBy('idPeg', 'asc')->orderBy('jadwal','asc')->get();
-        $user=user::all();
-          return view('admin.jadwal')->with('jadwal',$jadwal)->with('user',$user);
+        $kec=kec::all();
+          return view('index.IndexKec')->with('kec',$kec);
   }
-
   /**
    * Show the form for creating a new resource.
    *
@@ -22,12 +20,10 @@ class inKec extends Controller
    */
   public function create()
   {
-    $kec=Kec::all();
-    $Kab=kab::all();
-    return View('input.cKec')
-    ->with('Kec',$kec)
-    ->with('Kab',$Kab);
 
+    $kec=kec::all();
+    return View('input.cKec')
+    ->with('kec',$kec);
   }
 
   /**
@@ -39,11 +35,10 @@ class inKec extends Controller
   public function store(Request $request)
   {
 
-  $kec = new Kec;
+  $kec = new kec;
   $kec -> kecamatan = $request->kecamatan;
-  $kec -> idKab = $request->idKab;
   $kec->save();
-  return redirect()->action('inKec@create');
+  return redirect()->action('inKec@index');
   //return redirect()->action('tugasC@index');
   }
 
@@ -55,7 +50,7 @@ class inKec extends Controller
    */
   public function show($id)
   {
-  $kec=Kec::find($id);
+  $kec=kec::find($id);
 
   }
 
@@ -67,12 +62,9 @@ class inKec extends Controller
    */
   public function edit($id)
   {
-      $Kec=Kec::find($id);
-      $Kab=kab::all();
+    $kec=kec::find($id);
     return View('edit.eKec')
-    ->with('Kec',$Kec)
-    ->with('Kab',$Kab);
-
+    ->with('kec',$kec);
   }
 
   /**
@@ -84,13 +76,11 @@ class inKec extends Controller
    */
   public function update(Request $request, $id)
   {
-      $Kec=Kec::find($id);
-      $Kec -> kecamatan = $request->kecamatan;
-      $Kec -> idKab = $request->idKab;
-      $Kec->save();
+    $kec=kec::find($id);
+    $kec-> kecamatan = $request->kecamatan;
+    $kec->save();
 
-
-    $kec=Kec::all();
+    $kec=kec::all();
     return redirect()->action('inKec@create');
     //redirect aja
   }
@@ -103,12 +93,12 @@ class inKec extends Controller
    */
   public function destroy($id)
   {
-    $kec=Kec::find($id)
+    $kec=kec::find($id)
     ->delete();
-    $kec=Kec::find($id);
-    $kec=Kec::all();
+    $kec=kec::find($id);
+    $kec=kec::all();
   //redirect lagi
-  return redirect()->action('inKec@create');
+  return redirect()->action('inKec@index');
 
   }
 }

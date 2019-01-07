@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{URL::to('/')}}/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{URL::to('/')}}/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
     <title>RASIO LISTRIK</title>
+  
 </head>
 
 <body>
@@ -144,19 +145,19 @@
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/Prov.html">Provinsi</a>
+                                            <a class="nav-link" href="pages/data-tables.html">Provinsi</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/Kec.html">Kecamatan</a>
+                                            <a class="nav-link" href="pages/tabel1.html">Kecamatan</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/Kab.html">Kabupaten</a>
+                                            <a class="nav-link" href="pages/tabel2.html">Kabupaten</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/Desa.html">Desa</a>
+                                            <a class="nav-link" href="pages/tabel3.html">Desa</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/Dus.html">Dusun</a>
+                                            <a class="nav-link" href="pages/tabel4.html">Dusun</a>
                                         </li>
                                     </ul>
                                 </div>

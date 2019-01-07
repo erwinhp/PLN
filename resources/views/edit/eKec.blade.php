@@ -8,7 +8,7 @@
               <h5 class="card-header">Edit Kecamatan</h5>
               <div class="card-body">
                 <div class="panel-bSody">
-                    <form class="form-horizontal" role="form" method="post" action="/admin/kec/{{$Kec->id}}" >
+                    <form class="form-horizontal" role="form" method="post" action="/admin/kec/{{$kec->id}}" >
 
 
                         {{ csrf_field() }}

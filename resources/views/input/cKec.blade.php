@@ -11,25 +11,8 @@
                     <form class="form-horizontal" role="form" method="POST" action="/admin/kec">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('idKab') ? ' has-error' : '' }}">
-                    <label for="idProv" class="col-md-4 control-label">Kabpuaten</label>
-
-                    <div class="col-md-6">
-                      <select class="form-control input-sm"name="idKab" value="{{ old('idKab') }}" required>
-                        @foreach ($Kab as $u)
-                          <option value="{{$u->id}}"->{{$u->kabupaten}}</option>
-                        @endforeach
-                      </select >
-                        @if ($errors->has('idKab'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('idKab') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
                         <div class="form-group{{ $errors->has('har_bes') ? ' has-error' : '' }}">
-                            <label for="har_bes" class="col-md-4 control-label">kecamatan</label>
+                            <label for="har_bes" class="col-md-4 control-label">Kecamatan</label>
 
                             <div class="col-md-6">
                                 <input id="kecamatan" type="kecamatan" class="form-control" name="kecamatan" value="{{ old('kecamatan') }}" required>

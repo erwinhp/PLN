@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Desa;
-use App\Kec;
-class inDes extends Controller
+use App\des;
+use App\Kab;
+use App\Prov;
+use Hash;
+use App\Http\Requests;
+class inKab extends Controller
 {
   public function index()
   {
+    $des=des::all();
+    $Kab=Kab::all();
+    $Prov=Prov::all();
+    return view('index.IndexDes')->with('Des',$Des)->with('Kab',$Kab)->with('Prov',$Prov);
 
-        $jadwal=jadwal::where('jadwal','>', Carbon::now())->orderBy('idPeg', 'asc')->orderBy('jadwal','asc')->get();
-        $user=user::all();
-          return view('admin.jadwal')->with('jadwal',$jadwal)->with('user',$user);
+  return View('index.IndexDes');
   }
 
   /**
@@ -22,12 +27,13 @@ class inDes extends Controller
    */
   public function create()
   {
-
-    $Desa=Desa::all();
-    $Kec=Kec::all();
+    $des=des::all();
+    $kab=Kab::all();
+    $Prov=Prov::all();
     return View('input.cDesa')
-    ->with('Desa',$Desa)
-    ->with('Kec',$Kec);
+    ->with('des',$des)
+    ->with('Kab',$kab)
+    ->with('Prov',$Prov);
   }
 
   /**
@@ -39,12 +45,13 @@ class inDes extends Controller
   public function store(Request $request)
   {
 
-$Desa = new Desa;
-$Desa -> Des = $request->Des;
-$Desa -> idKec = $request->idKec;
-$Desa->save();
-return redirect()->action('inDes@create');
-//return redirect()->action('tugasC@index');
+  $des = new des;
+  $des -> desa = $request->desa;
+  $des -> kabupaten = $request->kabupaten;
+  $des -> idProv = $request->idProv;
+  $des->save();
+  return redirect()->action('inDes@index');
+  //return redirect()->action('tugasC@index');
   }
 
   /**
@@ -55,7 +62,7 @@ return redirect()->action('inDes@create');
    */
   public function show($id)
   {
-  $Desa=Desa::find($id);
+  $des=des::find($id);
 
   }
 
@@ -67,11 +74,13 @@ return redirect()->action('inDes@create');
    */
   public function edit($id)
   {
-    $Desa=Desa::find($id);
-    $Kec=Kec::all();
-    return View('edit.eDesa')
-    ->with('Desa',$Desa)
-    ->with('Kec',$Kec);
+    $des=des::find($id)
+    $kab=Kab::all();
+    $Prov=Prov::all();
+    return View('edit.cDesa')
+    ->with('Des',$des)
+    ->with('Kab',$kab);
+    ->with('Prov',$Prov);
 
   }
 
@@ -84,14 +93,15 @@ return redirect()->action('inDes@create');
    */
   public function update(Request $request, $id)
   {
-    $Desa=Desa::find($id);
-    $Desa -> Des = $request->Des;
-    $Desa -> idKec = $request->idKec;
+    $des=des::find($id);
+    $des -> desa = $resquest->desa;
+    $des -> kabupaten = $request->kabupaten;
+    $des -> idProv = $request->idProv;
+    $des->save();
 
-    $Desa->save();
 
-    $Desa=Desa::all();
-    return redirect()->action('inDes@create');
+    $des=des::all();
+    return redirect()->action('inDes@index');
     //redirect aja
   }
 
@@ -103,12 +113,12 @@ return redirect()->action('inDes@create');
    */
   public function destroy($id)
   {
-    $Desa=Desa::find($id)
+    $des=des::find($id)
     ->delete();
-    $Desa=Desa::find($id);
-    $Desa=Desa::all();
+    $des=des::find($id);
+    $des=des::all();
   //redirect lagi
-  return redirect()->action('jadwalC@index');
+  return redirect()->action('inDes@index');
 
   }
 }

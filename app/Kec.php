@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kec extends Model
 {
-  protected $table = "Kec";
+  protected $table = "kec";
 public $timestamps= false;
-protected $fillable = ['id','kecamatan','idKab'];
+protected $fillable = ['id','kecamatan','idKec'];
 }
