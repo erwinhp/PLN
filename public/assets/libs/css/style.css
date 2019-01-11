@@ -365,6 +365,7 @@ address {}
     position: absolute;
     z-index: -1;
     opacity: 0;
+
 }
 
 .custom-control-label {
@@ -384,7 +385,7 @@ address {}
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after {}
 
 .custom-control-label::after {
-    position: absolute;
+     position: absolute;
     top: 7px;
     left: 0;
     display: block;
@@ -397,7 +398,7 @@ address {}
 }
 
 .custom-control-label::before {
-    position: absolute;
+        position: absolute;
     top: 7px;
     left: 0;
     display: block;
@@ -411,7 +412,7 @@ address {}
     user-select: none;
     background-color: #ffffff;
     border: 2px solid #d2d2e4;
-}
+    }
 
 .custom-radio .custom-control-input:checked~.custom-control-label::before {
     background-color: #5969ff;
@@ -419,7 +420,7 @@ address {}
 }
 
 .custom-control-input:disabled~.custom-control-label::before {
-    background-color: #efeff6;
+  background-color: #efeff6;
 }
 
 .custom-select-font-size {
@@ -427,7 +428,7 @@ address {}
 }
 
 .custom-control-input:focus~.custom-control-label::before {
-    box-shadow: none;
+   box-shadow: none;
 }
 
 .custom-valid.custom-control-input.is-valid:checked~.custom-control-label::before,
@@ -4573,7 +4574,6 @@ tr.group:hover {
 /*----------------------- 
 6.3 Login
 -------------------------*/
-
 
 /*----------------------- 
 6.4 Sign up Page

@@ -18,18 +18,6 @@
                         <div class="form-group{{ $errors->has('idProv') ? ' has-error' : '' }}">
                     <label for="idProv" class="col-md-4 control-label">Provinsi</label>
 
-                    <div class="col-md-6">
-                      <select class="form-control input-sm"name="idKab" value="{{$Kec->idKab}}" required>
-                        @foreach ($Kab as $u)
-                          <option value="{{$u->id}}"->{{$u->kabupaten}}</option>
-                        @endforeach
-                      </select >
-                        @if ($errors->has('idKab'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('idKab') }}</strong>
-                            </span>
-                        @endif
-                    </div>
                 </div>
 
                         <div class="form-group{{ $errors->has('har_bes') ? ' has-error' : '' }}">

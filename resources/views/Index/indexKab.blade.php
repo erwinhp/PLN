@@ -8,13 +8,8 @@
     <!-- fixed header  -->
     <!-- ============================================================== -->
 <form action="" method="get" >
-<<<<<<< HEAD
-<select name="var" class="btn btn-xs btn-primary "  onchange="this.form.submit();">
-<option value="0">Kabupaten</option>
-=======
 <select name="var" class="pull-right clearfix"  onchange="this.form.submit();">
 <option value="0">Provinsi</option>
->>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
 @foreach ($Prov as $p)
 <option value="{{$p->id}}">{{$p->provinsi}}</option>
 @endforeach
@@ -26,30 +21,39 @@
 </form>
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <span class="pull-right clearfix">
-      <a href="/admin/kab/create" class="pull-right clearfix ">Buat Kabupaten</a>
+      <a href="/admin/kab/create" class="btn btn-xs btn-primary">Buat Kabupaten</a>
     </span>
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example4" class="table table-striped table-bordered" style="width:100%">
+
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Kabupaten</th>
+                                <th>Tambah Kecamatan</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                           </thead>
                           <tbody>
                             @foreach ($provt as $k)
+                            <th>
+                            </th>
+                          
                         <th>{{$k->kabupaten}}</th>
+                        <th>
+                          <a href="#" class="btn btn-xs btn-primary">Tambah</a>
+                        </th> 
                         <th><form class="" action="/admin/prov/{{$k->id}}" method="post">
                         <a href="/admin/kab/{{$k->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
-                        </form></th>
+                        </form>
                       <th>
                         <form class="" action="/admin/kab/{{$k->id}}" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="{{csrf_token()}}">
-                          <input type="submit" class="btn btn-xs btn-primary" value="delete">
+                          <input type="submit" class="btn btn-xs btn-primary" value="Delete">
                         </form>
                       </th>
                           </tbody>
