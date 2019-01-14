@@ -8,5 +8,5 @@ class Kab extends Model
 {
   protected $table = "Kab";
 public $timestamps= false;
-protected $fillable = ['id','kabupaten','idProv'];
+protected $fillable = ['id','kabupaten'];
 }

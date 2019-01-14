@@ -3,54 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use App\des;
+use App\Desa;
 use App\Kab;
-use App\Prov;
+use App\Kec;
 use Hash;
 use App\Http\Requests;
-class inKab extends Controller
-{
-  public function index()
-  {
-    $des=des::all();
-    $Kab=Kab::all();
-    $Prov=Prov::all();
-    return view('index.IndexDes')->with('Des',$Des)->with('Kab',$Kab)->with('Prov',$Prov);
-
-  return View('index.IndexDes');
-=======
-use App\Desa;
-use App\Kec;
-use App\Prov;
-use App\Kab;
 class inDes extends Controller
 {
   public function index()
   {
-    $Kab=Kab::all();
-    $Prov=Prov::all();
-    $Kec=kec::all();
-    $Desa=Desa::all();
-    return view('index.IndexDesa')->with('Kab',$Kab)->with('Prov',$Prov)->with('Kec',$Kec)->with('Desa',$Desa);
+    $des=Desa::all();
+    $kec=kec::all();
+    $kab=Kab::all();
+    return view('Index.IndexDesa')->with('Desa',$des)->with('Kec',$kec)->with('Kab',$kab);
 
->>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
-  }
+}
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+
   public function create()
   {
-    $des=des::all();
+    $des=Desa::all();
+    $kec=kec::all();
     $kab=Kab::all();
-    $Prov=Prov::all();
     return View('input.cDesa')
     ->with('des',$des)
     ->with('Kab',$kab)
-    ->with('Prov',$Prov);
+    ->with('Kec',$kec);
   }
 
   /**
@@ -61,23 +39,11 @@ class inDes extends Controller
    */
   public function store(Request $request)
   {
-
-<<<<<<< HEAD
-  $des = new des;
-  $des -> desa = $request->desa;
-  $des -> kabupaten = $request->kabupaten;
-  $des -> idProv = $request->idProv;
+  $des = new Desa;
+  $des -> Des = $request->Des;
+  $des -> idKec = $request->idKec;
   $des->save();
   return redirect()->action('inDes@index');
-  //return redirect()->action('tugasC@index');
-=======
-$Desa = new Desa;
-$Desa -> Des = $request->Des;
-$Desa -> idKec = $request->idKec;
-$Desa->save();
-return redirect()->action('inDes@index');
-//return redirect()->action('tugasC@index');
->>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
   }
 
   /**
@@ -88,7 +54,7 @@ return redirect()->action('inDes@index');
    */
   public function show($id)
   {
-  $des=des::find($id);
+  $des=Desa::find($id);
 
   }
 
@@ -100,14 +66,10 @@ return redirect()->action('inDes@index');
    */
   public function edit($id)
   {
-    $des=des::find($id)
+    $des=Desa::find($id);
     $kab=Kab::all();
-    $Prov=Prov::all();
-    return View('edit.cDesa')
-    ->with('Des',$des)
-    ->with('Kab',$kab);
-    ->with('Prov',$Prov);
-
+    $kec=Kec::all();
+    return View('edit.eDesa')->with('Des',$des)->with('Kec',$kec)->with('Kab',$kab);
   }
 
   /**
@@ -119,18 +81,11 @@ return redirect()->action('inDes@index');
    */
   public function update(Request $request, $id)
   {
-    $des=des::find($id);
-    $des -> desa = $resquest->desa;
-    $des -> kabupaten = $request->kabupaten;
-    $des -> idProv = $request->idProv;
+    $des=Desa::find($id);
+    $des -> Des = $request->Des;
+    $des -> idKec = $request->idKec;
     $des->save();
-
-
-<<<<<<< HEAD
-    $des=des::all();
-=======
-    $Desa=Desa::all();
->>>>>>> 5ce6bc8957a5d0d7bfe3dbd222e5837c2bc09024
+    $des=Desa::all();
     return redirect()->action('inDes@index');
     //redirect aja
   }
@@ -143,10 +98,10 @@ return redirect()->action('inDes@index');
    */
   public function destroy($id)
   {
-    $des=des::find($id)
+    $des=Desa::find($id)
     ->delete();
-    $des=des::find($id);
-    $des=des::all();
+    $des=Desa::find($id);
+    $des=Desa::all();
   //redirect lagi
   return redirect()->action('inDes@index');
 

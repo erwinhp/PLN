@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kab;
-use App\Prov;
 use Hash;
 use App\Http\Requests;
 class inKab extends Controller
@@ -12,8 +11,7 @@ class inKab extends Controller
   public function index()
   {
     $Kab=Kab::all();
-    $Prov=Prov::all();
-    return view('index.IndexKab')->with('Kab',$Kab)->with('Prov',$Prov);
+    return view('index.IndexKab')->with('Kab',$Kab);
 
   return View('index.IndexKab');
   }
@@ -26,10 +24,8 @@ class inKab extends Controller
   public function create()
   {
     $kab=Kab::all();
-    $Prov=Prov::all();
     return View('input.cKab')
-    ->with('Kab',$kab)
-    ->with('Prov',$Prov);
+    ->with('Kab',$kab);
   }
 
   /**
@@ -43,7 +39,6 @@ class inKab extends Controller
 
   $kab = new Kab;
   $kab -> kabupaten = $request->kabupaten;
-  $kab -> idProv = $request->idProv;
   $kab->save();
   return redirect()->action('inKab@index');
   //return redirect()->action('tugasC@index');
@@ -70,10 +65,9 @@ class inKab extends Controller
   public function edit($id)
   {
     $kab=Kab::find($id);
-    $Prov=Prov::all();
+
     return View('edit.eKab')
-    ->with('Kab',$kab)
-    ->with('Prov',$Prov);
+    ->with('Kab',$kab);
 
   }
 
@@ -88,7 +82,6 @@ class inKab extends Controller
   {
     $kab=Kab::find($id);
     $kab -> kabupaten = $request->kabupaten;
-    $kab -> idProv = $request->idProv;
     $kab->save();
 
 

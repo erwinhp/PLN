@@ -16,8 +16,7 @@ class Kab extends Migration
       Schema::create('Kab', function (Blueprint $table) {
       $table->increments('id');
       $table->string('kabupaten');
-      $table->integer('idProv')->unsigned();
-      $table->foreign('idProv')->references('id')->on('Prov')->onDelete('cascade');
+
       });
     }
 

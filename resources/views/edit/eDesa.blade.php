@@ -8,14 +8,14 @@
               <h5 class="card-header">Edit Desa</h5>
               <div class="card-body">
                 <div class="panel-bSody">
-                    <form class="form-horizontal" role="form" method="POST" action="/admin/des/{{$Desa->id}}">
+                    <form class="form-horizontal" role="form" method="POST" action="/admin/des/{{$Des->id}}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('idProv') ? ' has-error' : '' }}">
                     <label for="idProv" class="col-md-4 control-label">Kecamatan</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm"name="idKec" value="{{$Desa->idKec}}" required>
+                      <select class="form-control input-sm"name="idKec" value="{{$Des->idKec}}" required>
                         @foreach ($Kec as $u)
                           <option value="{{$u->id}}"->{{$u->kecamatan}}</option>
                         @endforeach
@@ -32,7 +32,7 @@
                             <label for="Desa" class="col-md-4 control-label">Desa</label>
 
                             <div class="col-md-6">
-                                <input id="Des" type="Des" class="form-control" name="Des" value="{{$Desa->Des}}" required>
+                                <input id="Des" type="Des" class="form-control" name="Des" value="{{$Des->Des}}" required>
 
                                 @if ($errors->has('Des'))
                                     <span class="help-block">

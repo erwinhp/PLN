@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\kec;
+use App\Kab;
 
 class inKec extends Controller
 {
@@ -14,11 +15,9 @@ class inKec extends Controller
   {
 
         $kec=kec::all();
-          return view('index.IndexKec')->with('kec',$kec);
+        $Kab=Kab::all();
+          return view('index.IndexKec')->with('kec',$kec)->with('Kab',$Kab);
 
-
-    $Kec=kec::all();
-    return view('index.IndexKec')->with('Kec',$Kec);
 
 
   }
@@ -31,8 +30,9 @@ class inKec extends Controller
   {
 
     $kec=kec::all();
+    $Kab=kab::all();
     return View('input.cKec')
-    ->with('kec',$kec);
+    ->with('kec',$kec)->with('Kab',$Kab);
   }
 
   /**
@@ -46,8 +46,9 @@ class inKec extends Controller
 
   $kec = new kec;
   $kec -> kecamatan = $request->kecamatan;
+  $kec -> idKab = $request->idKab;
   $kec->save();
-  return redirect()->action('cKec@index');
+  return redirect()->action('inKec@index');
   //return redirect()->action('tugasC@index');
   }
 
@@ -72,8 +73,9 @@ class inKec extends Controller
   public function edit($id)
   {
     $kec=kec::find($id);
+    $Kab=kab::all();
     return View('edit.eKec')
-    ->with('kec',$kec);
+    ->with('kec',$kec)->with('Kab',$Kab);
   }
 
   /**
@@ -87,11 +89,8 @@ class inKec extends Controller
   {
     $kec=kec::find($id);
     $kec-> kecamatan = $request->kecamatan;
+    $kec -> idKab = $request->idKab;
     $kec->save();
-
-
-    $kec=kec::all();
-    return redirect()->action('inKec@create');
 
     $kec=Kec::all();
     return redirect()->action('inKec@index');

@@ -1,27 +1,17 @@
 @extends('layouts.Dash')
 @section('content')
-<?php
-  $pr='';
- ?>
+
 <div class="row">
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
-<form action="" method="get" >
-<select name="var" class="pull-right clearfix"  onchange="this.form.submit();">
-<option value="0">Provinsi</option>
-@foreach ($Prov as $p)
-<option value="{{$p->id}}">{{$p->provinsi}}</option>
-@endforeach
-</select>
-    <?php
-    if (isset($_GET['var'])) {$pr=$_GET['var'];}
-    $provt = DB::select('SELECT id,kabupaten,idProv FROM kab WHERE (idProv)=:j', ['j' => $pr]);
-     ?>
-</form>
+
+
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
     <span class="pull-right clearfix">
       <a href="/admin/kab/create" class="btn btn-xs btn-primary">Buat Kabupaten</a>
+
+      <a href="/admin/kec/create" class="btn btn-xs btn-primary">Buat Kecamatan</a>
     </span>
         <div class="card">
             <div class="card-body">
@@ -32,20 +22,16 @@
                             <tr>
                                 <th>No</th>
                                 <th>Kabupaten</th>
-                                <th>Tambah Kecamatan</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($provt as $k)
+                            @foreach ($Kab as $k)
                             <th>
                             </th>
-                          
+
                         <th>{{$k->kabupaten}}</th>
-                        <th>
-                          <a href="#" class="btn btn-xs btn-primary">Tambah</a>
-                        </th> 
                         <th><form class="" action="/admin/prov/{{$k->id}}" method="post">
                         <a href="/admin/kab/{{$k->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
                         </form>

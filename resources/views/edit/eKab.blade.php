@@ -14,23 +14,7 @@
                         {{ csrf_field() }}
 
 
-                        <div class="form-group{{ $errors->has('idProv') ? ' has-error' : '' }}">
-                    <label for="idProv" class="col-md-4 control-label">Provinsi</label>
-
-                    <div class="col-md-6">
-                      <select class="form-control input-sm"name="idProv" value="{{$Kab->idProv}}" required>
-                        @foreach ($Prov as $u)
-                          <option value="{{$u->id}}"->{{$u->provinsi}}</option>
-                        @endforeach
-                      </select >
-                        @if ($errors->has('idProv'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('idProv') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-
+      
                         <div class="form-group{{ $errors->has('har_bes') ? ' has-error' : '' }}">
                             <label for="har_bes" class="col-md-4 control-label">kabupaten</label>
 
