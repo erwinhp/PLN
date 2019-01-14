@@ -17,8 +17,9 @@ class Req extends Migration
       $table->increments('id');
       $table->string('RtRw');
       $table->string('Status')->default('Dilihat');
-      $table->integer('idDes')->unsigned();
-      $table->foreign('idDes')->references('id')->on('Desa')->onDelete('cascade');
+      $table->string('PotPel');
+      $table->integer('idDus')->unsigned();
+      $table->foreign('idDus')->references('id')->on('Dusun')->onDelete('cascade');
       });
     }
 

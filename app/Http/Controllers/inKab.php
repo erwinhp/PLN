@@ -12,8 +12,6 @@ class inKab extends Controller
   {
     $Kab=Kab::all();
     return view('index.IndexKab')->with('Kab',$Kab);
-
-  return View('index.IndexKab');
   }
 
   /**

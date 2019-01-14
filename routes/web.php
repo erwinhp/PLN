@@ -44,3 +44,8 @@ Route::resource ('admin/ket','inKet');
 Route::group(['middleware' => 'auth'], function() {
 Route::resource ('req','inReq');
 });
+
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/dusun','inDus');
+});

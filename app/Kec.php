@@ -8,5 +8,5 @@ class Kec extends Model
 {
   protected $table = "kec";
 public $timestamps= false;
-protected $fillable = ['id','kecamatan','idKec'];
+protected $fillable = ['id','kecamatan','idKab'];
 }
