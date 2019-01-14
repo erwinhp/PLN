@@ -49,3 +49,8 @@ Route::resource ('req','inReq');
 Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/dusun','inDus');
 });
+
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/user','cuser');
+});

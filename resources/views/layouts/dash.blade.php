@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{URL::to('/')}}/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{URL::to('/')}}/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
     <title>STABILITAS RD KALSEL</title>
-  
+
 </head>
 
 <body>
@@ -93,7 +93,8 @@
                                     <h5 class="mb-0 text-white nav-user-name">USERS </h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Pengguna</a>
+                              
+                                <a class="dropdown-item" href="admin/user//edit"><i class="fas fa-user mr-2"></i>Pengguna</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Pengaturan</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" class="fas fa-power-off mr-2"
                                     onclick="event.preventDefault();
@@ -133,7 +134,7 @@
 
                             </li>
                            <li class="nav-item ">
-                               <a class="nav-link" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
+                               <a class="nav-link" href="{{URL::to('/')}}/admin/user" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Grafik</a>
@@ -144,20 +145,18 @@
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Tabel</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
+
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/data-tables.html">Provinsi</a>
+                                            <a class="nav-link" href="{{URL::to('/')}}/admin/kab">Kabupaten</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabel1.html">Kecamatan</a>
+                                            <a class="nav-link" href="{{URL::to('/')}}/admin/kec">Kecamatan</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabel2.html">Kabupaten</a>
+                                            <a class="nav-link" href="{{URL::to('/')}}/admin/des">Desa</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabel3.html">Desa</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabel4.html">Dusun</a>
+                                            <a class="nav-link" href="{{URL::to('/')}}/admin/dusun">Dusun</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -181,7 +180,7 @@
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
-                    
+
                     <!-- ============================================================== -->
                       @yield('content')
                     <!-- ============================================================== -->

@@ -27,8 +27,12 @@
                             </tr>
                           </thead>
                           <tbody>
+                            <?php $num=0;?>
                             @foreach ($Kab as $k)
                             <th>
+                              <?php $num=$num+1;
+                              echo $num;
+                              ?>
                             </th>
 
                         <th>{{$k->kabupaten}}</th>

@@ -19,7 +19,7 @@ class Ket extends Migration
       $table->integer('PotPel');
       $table->string('Keterangan');
       $table->integer('idDus')->unsigned();
-      $table->foreign('idDus')->references('id')->on('Dusun')->onDelete('cascade');
+      $table->foreign('idDus')->references('id')->on('Dus')->onDelete('cascade');
       });
     }
 
