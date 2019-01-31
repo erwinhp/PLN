@@ -7,10 +7,15 @@ use App\Desa;
 use App\Kab;
 use App\Kec;
 use App\Dus;
+use Illuminate\Support\Facades\Gate;
 class inDus extends Controller
 {
   public function index()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $dus=Dus::all();
     $Kab=Kab::all();
     return view('index.indexDus')->with('Dus',$dus)->with('Kab',$Kab);
@@ -24,6 +29,10 @@ class inDus extends Controller
    */
   public function create()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $dus=Dus::all();
     $Desa=Desa::all();
     $Kab=Kab::all();
@@ -56,6 +65,10 @@ class inDus extends Controller
    */
   public function show($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
   $dus=Dus::find($id);
 
   }
@@ -68,6 +81,10 @@ class inDus extends Controller
    */
   public function edit($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $dus=Dus::find($id);
     $Kab=Kab::all();
     $Desa=Desa::all();

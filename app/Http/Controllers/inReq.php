@@ -3,16 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app/Desa;
+use App\req;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use App\Desa;
+use App\Kab;
+use App\Kec;
+use App\Dus;
+use App\Ket;
 
+use App\Notifications\newDus;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Gate;
 class inReq extends Controller
 {
   public function index()
   {
+    if(!Gate::allows('isUser'))
+    {
+       return response("404", 404);
+    }
+    $Req=req::all();
+    $Kab=Kab::all();
+    $uid=Auth::id();
 
-        $jadwal=jadwal::where('jadwal','>', Carbon::now())->orderBy('idPeg', 'asc')->orderBy('jadwal','asc')->get();
-        $user=user::all();
-          return view('admin.jadwal')->with('jadwal',$jadwal)->with('user',$user);
+    return view('index.indexReq')->with('req',$Req)->with('Kab',$Kab)->with('UID',$uid);
   }
 
   /**
@@ -22,12 +37,19 @@ class inReq extends Controller
    */
   public function create()
   {
-
+    if(!Gate::allows('isUser'))
+    {
+       return response("404", 404);
+    }
+    $uid=Auth::id();
     $Req=req::all();
-    $Desa=Desa::all();
+    $dus=Dus::all();
+    $Kab=Kab::all();
     return View('input.cReq')
+    ->with('UID',$uid)
     ->with('req',$Req)
-    ->with('Desa',$Desa);
+    ->with('Kab',$Kab)
+    ->with('Dus',$dus);
   }
 
   /**
@@ -39,13 +61,26 @@ class inReq extends Controller
   public function store(Request $request)
   {
 
-  $Req = new Prov;
+  $Req = new req;
   $Req -> RtRw = $request->RtRw;
-  $Req -> Status = $request->Status;
-  $Req -> idDes = $request->idDes;
+  $Req -> idDus = $request->idDus;
+  $Req -> idUser = $request->idUser;
+  $Req -> PotPel = $request->PotPel;
   $Req->save();
-  return redirect()->action('inReq@create');
-  //return redirect()->action('tugasC@index');
+  //$user=User::where('Status','0')->first();
+  //$user = User::where('Status', 0)->select("id", "name")->first();
+  //print_r($user); die();
+  //foreach ($user as $usr){
+    //  $user->user->notify(new newDus($Req));
+  //}
+  // $user = User::whereHas('Status',function($query)
+  // {
+  //   $query->where('name','=','0');
+  // })->get();
+$user = User::where('Status',0)->get();
+  //$user->user->notify(new newDus($Req));f
+  \Notification::send($user, new newDus($Req));
+  return redirect()->action('inReq@index');
   }
 
   /**
@@ -56,8 +91,9 @@ class inReq extends Controller
    */
   public function show($id)
   {
-  $Req=req::find($id);
 
+  $Req=req::find($id);
+  return view('index.showReq')->with ('req',$Req);
   }
 
   /**
@@ -68,11 +104,17 @@ class inReq extends Controller
    */
   public function edit($id)
   {
-    $Req=$request::find($id);
-    $Desa=Desa::all();
+    if(!Gate::allows('isUser'))
+    {
+       return response("404", 404);
+    }
+    $Req=req::find($id);
+    $dus=Dus::all();
+    $Kab=Kab::all();
     return View('edit.eReq')
     ->with('req',$Req)
-    ->with('Desa',$Desa);
+    ->with('Kab',$Kab)
+    ->with('Dus',$dus);
   }
 
   /**
@@ -85,13 +127,15 @@ class inReq extends Controller
   public function update(Request $request, $id)
   {
     $Req=req::find($id);
+
     $Req -> RtRw = $request->RtRw;
-    $Req -> Status = $request->Status;
-    $Req -> idDes = $request->idDes;
+    $Req -> PotPel = $request->PotPel;
+    $Req -> idDus = $request->idDus;
+
     $Req->save();
 
     $Req=req::all();
-    return redirect()->action('inReq@create');
+    return redirect()->action('inReq@index');
     //redirect aja
   }
 
@@ -105,10 +149,8 @@ class inReq extends Controller
   {
     $Req=req::find($id)
     ->delete();
-    $Req=req::find($id);
-    $Req=req::all();
   //redirect lagi
-  return redirect()->action('inReq@create');
+  return redirect()->action('inReq@index');
 
   }
 }

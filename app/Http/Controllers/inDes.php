@@ -8,20 +8,33 @@ use App\Kab;
 use App\Kec;
 use Hash;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Gate;
 class inDes extends Controller
 {
   public function index()
   {
-    $des=Desa::all();
-    $kec=kec::all();
-    $kab=Kab::all();
-    return view('Index.IndexDesa')->with('Desa',$des)->with('Kec',$kec)->with('Kab',$kab);
+    if(!Gate::allows('isAdmin'))
+    {
+	     return response("404", 404);
+    }
+    else {
+      $des=Desa::all();
+      $kec=kec::all();
+      $kab=Kab::all();
+      return view('Index.IndexDesa')->with('Desa',$des)->with('Kec',$kec)->with('Kab',$kab);
+
+    }
+
 
 }
 
 
   public function create()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $des=Desa::all();
     $kec=kec::all();
     $kab=Kab::all();
@@ -54,6 +67,10 @@ class inDes extends Controller
    */
   public function show($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
   $des=Desa::find($id);
 
   }
@@ -66,6 +83,10 @@ class inDes extends Controller
    */
   public function edit($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $des=Desa::find($id);
     $kab=Kab::all();
     $kec=Kec::all();

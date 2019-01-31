@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use App\Kab;
 use Hash;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Gate;
 class inKab extends Controller
 {
   public function index()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $Kab=Kab::all();
     return view('index.IndexKab')->with('Kab',$Kab);
   }
@@ -21,6 +26,10 @@ class inKab extends Controller
    */
   public function create()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $kab=Kab::all();
     return View('input.cKab')
     ->with('Kab',$kab);
@@ -50,6 +59,10 @@ class inKab extends Controller
    */
   public function show($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
   $kab=Kab::find($id);
 
   }
@@ -62,6 +75,10 @@ class inKab extends Controller
    */
   public function edit($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $kab=Kab::find($id);
 
     return View('edit.eKab')

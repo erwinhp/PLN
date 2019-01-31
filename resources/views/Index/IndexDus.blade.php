@@ -1,6 +1,7 @@
 @extends('layouts.Dash')
 @section('content')
 <?php
+
   $pr='';
   $pr2='';
   $pr3='';
@@ -75,13 +76,21 @@
                           <tbody>
                             <?php $num=0;?>
                             @foreach ($Dest as $de)
-                            <th>
+                        <th>
                               <?php $num=$num+1;
                               echo $num;
                               ?>
-                            </th>
+                        </th>
                         <th>{{$de->Dusun}}</th>
-                        <th>button Detail with ahref</th>
+                        <th>
+                            <form method="get" action="{{URL::to('/')}}/admin/ket">
+                                <input type="hidden" name="idDus" value="{{$de->id}}">
+                                <input type="submit" class="btn btn-xs btn-primary" value="Detail">
+                            </form>
+
+                          </th>
+
+
                         <th><form class="" action="/admin/dusun/{{$de->id}}" method="post">
                         <a href="/admin/dusun/{{$de->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
                         </form></th>

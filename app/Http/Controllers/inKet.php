@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Desa;
+use App\Kab;
+use App\Kec;
+use App\Dus;
 use App\Ket;
+use Illuminate\Support\Facades\Gate;
 class inKet extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
+    $ket=Ket::all();
+    $Kab=Kab::all();
+    $value = session('idDus');
+    return view('index.indexKet')->with('Ket',$ket)->with('Kab',$Kab)->with('pr4',$value);
 
-        $jadwal=jadwal::where('jadwal','>', Carbon::now())->orderBy('idPeg', 'asc')->orderBy('jadwal','asc')->get();
-        $user=user::all();
-          return view('admin.jadwal')->with('jadwal',$jadwal)->with('user',$user);
   }
 
   /**
@@ -22,11 +31,18 @@ class inKet extends Controller
    */
   public function create()
   {
-
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $ket=Ket::all();
+    $Kab=Kab::all();
     $Desa=Desa::all();
+    $dus=Dus::all();
     return View('input.cKet')
     ->with('Ket',$ket)
+    ->with('Kab',$Kab)
+    ->with('Dus',$dus)
     ->with('Desa',$Desa);
   }
 
@@ -43,10 +59,10 @@ class inKet extends Controller
   $ket -> RtRw = $request->RtRw;
   $ket -> PotPel = $request->PotPel;
   $ket -> Keterangan = $request->Keterangan;
-  $ket -> idDes = $request->idDes;
+  $ket -> idDus = $request->idDus;
 
   $ket->save();
-  return redirect()->action('inKet@create');
+  return redirect()->action('inKet@index');
   //return redirect()->action('tugasC@index');
   }
 
@@ -58,6 +74,10 @@ class inKet extends Controller
    */
   public function show($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
   $ket=Ket::find($id);
 
   }
@@ -70,10 +90,18 @@ class inKet extends Controller
    */
   public function edit($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $Ket=Ket::find($id);
+    $Kab=Kab::all();
     $Desa=Desa::all();
+    $dus=Dus::all();
     return View('edit.eKet')
     ->with('Ket',$Ket)
+    ->with('Dus',$dus)
+    ->with('Kab',$Kab)
     ->with('Desa',$Desa);
 
   }
@@ -92,12 +120,12 @@ class inKet extends Controller
     $Ket -> RtRw = $request->RtRw;
     $Ket -> PotPel = $request->PotPel;
     $Ket -> Keterangan = $request->Keterangan;
-    $Ket -> idDes = $request->idDes;
+    $Ket -> idDus = $request->idDus;
 
     $Ket->save();
 
     $Ket=Ket::all();
-    return redirect()->action('inKet@create');
+    return redirect()->action('inKet@index');
     //redirect aja
   }
 
@@ -114,7 +142,8 @@ class inKet extends Controller
     $ket=Ket::find($id);
     $ket=Ket::all();
   //redirect lagi
-  return redirect()->action('jadwalC@index');
+
+  return redirect()->action('inKet@index');
 
   }
 }

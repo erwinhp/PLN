@@ -86,6 +86,7 @@
                         </li>
                         <li class="nav-item dropdown connection">
                         </li>
+
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -93,7 +94,7 @@
                                     <h5 class="mb-0 text-white nav-user-name">USERS </h5>
                                     <span class="status"></span><span class="ml-2">Available</span>
                                 </div>
-                              
+
                                 <a class="dropdown-item" href="admin/user//edit"><i class="fas fa-user mr-2"></i>Pengguna</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Pengaturan</a>
                                 <a class="dropdown-item" href="<?php echo e(route('logout')); ?>" class="fas fa-power-off mr-2"
@@ -130,6 +131,7 @@
                             <li class="nav-divider">
                                 Menu
                             </li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                             <li class="nav-item ">
                                 <a class="nav-link active" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
 
@@ -139,9 +141,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Grafik</a>
-
                             </li>
-
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isUser')): ?>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="<?php echo e(URL::to('/')); ?>/req" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Request</a>
+                             </li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Tabel</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
@@ -162,7 +169,7 @@
                                     </ul>
                                 </div>
                             </li>
-
+                            <?php endif; ?>
 
                                     </ul>
                                 </div>

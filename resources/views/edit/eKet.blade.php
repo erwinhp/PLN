@@ -16,18 +16,18 @@
 
 
 
-                        <div class="form-group{{ $errors->has('idDes') ? ' has-error' : '' }}">
-                    <label for="idDes" class="col-md-4 control-label">Desa</label>
+                        <div class="form-group{{ $errors->has('idDus') ? ' has-error' : '' }}">
+                    <label for="idDus" class="col-md-4 control-label">Dusun</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm"name="idDes" value="{{$Ket->idDes}}" required>
-                        @foreach ($Desa as $u)
-                          <option value="{{$u->id}}"->{{$u->Des}}</option>
+                      <select class="form-control input-sm"name="idDus" value="{{$Ket->idDus}}" required>
+                        @foreach ($Dus as $u)
+                          <option value="{{$u->id}}"->{{$u->Dusun}}</option>
                         @endforeach
                       </select >
-                        @if ($errors->has('idDes'))
+                        @if ($errors->has('idDus'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('idDes') }}</strong>
+                                <strong>{{ $errors->first('idDus') }}</strong>
                             </span>
                         @endif
                     </div>

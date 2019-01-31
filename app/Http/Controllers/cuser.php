@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Gate;
 class cuser extends Controller
 {
   public function index()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $user=User::all();
     return view('index/indexUser')->with('User',$user);
   }
@@ -19,6 +23,10 @@ class cuser extends Controller
    */
   public function create()
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $kab=Kab::all();
     return View('input.cKab')
     ->with('Kab',$kab);
@@ -48,6 +56,10 @@ class cuser extends Controller
    */
   public function show($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
   $kab=Kab::find($id);
 
   }
@@ -60,6 +72,10 @@ class cuser extends Controller
    */
   public function edit($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $user=User::find($id);
 
     return View('edit.eUser')

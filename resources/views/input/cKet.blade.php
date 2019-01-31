@@ -1,6 +1,8 @@
 @extends('layouts.dash')
 
 @section('content')
+
+
 <div class="container">
   <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -11,16 +13,16 @@
                     <form class="form-horizontal" role="form" method="POST" action="/admin/ket">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('idDes') ? ' has-error' : '' }}">
-                    <label for="idDes" class="col-md-4 control-label">Desa</label>
+                        <div class="form-group{{ $errors->has('idDus') ? ' has-error' : '' }}">
+                    <label for="idDus" class="col-md-4 control-label">Dusun</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm"name="idDes" value="{{ old('idDes') }}" required>
-                        @foreach ($Desa as $u)
-                          <option value="{{$u->id}}"->{{$u->Des}}</option>
+                      <select class="form-control input-sm"name="idDus" value="{{ old('idDus') }}" required>
+                        @foreach ($Dus as $u)
+                          <option value="{{$u->id}}"->{{$u->Dusun}}</option>
                         @endforeach
                       </select >
-                        @if ($errors->has('idDes'))
+                        @if ($errors->has('idDus'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('idDes') }}</strong>
                             </span>
@@ -81,6 +83,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
+                                  </form>
                                     Submit
                                 </button>
                             </div>

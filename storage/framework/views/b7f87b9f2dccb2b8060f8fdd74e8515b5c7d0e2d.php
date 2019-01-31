@@ -57,21 +57,23 @@
                             </div>
                         </div>
 
+              
+
                         <div class="form-group<?php echo e($errors->has('Status') ? ' has-error' : ''); ?>">
-                            <label for="Status" class="col-md-4 control-label">Status</label>
+                    <label for="Status" class="col-md-4 control-label">Status</label>
 
-                            <div class="col-md-6">
-                                <input id="Status" type="Status" class="form-control" name="Status" value="<?php echo e($User->Status); ?>" required>
-
-                                <?php if($errors->has('Status')): ?>
-                                    <span class="help-block">
-                                        <strong><?php echo e($errors->first('Status')); ?></strong>
-                                    </span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-
-
+                    <div class="col-md-6">
+                      <select class="form-control input-sm"name="Status" value="<?php echo e($User->Status); ?>" required>
+                        <option value="1"> User </option>
+                        <option value="0"> Admin </option>
+                      </select >
+                        <?php if($errors->has('Status')): ?>
+                            <span class="help-block">
+                                <strong><?php echo e($errors->first('Status')); ?></strong>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                </div>
 
                                                 <input type="hidden" name="_method" value="put">
                                                 <div class="form-group">

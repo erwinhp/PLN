@@ -8,25 +8,29 @@
               <h5 class="card-header">Input Request</h5>
               <div class="card-body">
                 <div class="panel-bSody">
-                    <form class="form-horizontal" role="form" method="POST" action="/admin/ket">
+                    <form class="form-horizontal" role="form" method="POST" action="/req">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('idDes') ? ' has-error' : '' }}">
-                    <label for="idDes" class="col-md-4 control-label">Desa</label>
+
+
+                        <div class="form-group{{ $errors->has('idDus') ? ' has-error' : '' }}">
+                    <label for="idDus" class="col-md-4 control-label">Dusun</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm"name="idDes" value="{{ old('idDes') }}" required>
-                        @foreach ($Desa as $u)
-                          <option value="{{$u->id}}"->{{$u->Des}}</option>
+                      <select class="form-control input-sm"name="idDus" value="{{ old('idDus') }}" required>
+                        @foreach ($Dus as $u)
+                          <option value="{{$u->id}}"->{{$u->Dusun}}</option>
                         @endforeach
                       </select >
-                        @if ($errors->has('idDes'))
+                        @if ($errors->has('idDus'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('idDes') }}</strong>
+                                <strong>{{ $errors->first('idDus') }}</strong>
                             </span>
                         @endif
                     </div>
                 </div>
+
+
 
                         <div class="form-group{{ $errors->has('RtRw') ? ' has-error' : '' }}">
                             <label for="RtRw" class="col-md-4 control-label">RtRw</label>
@@ -43,22 +47,22 @@
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('har_bes') ? ' has-error' : '' }}">
-                            <label for="RtRw" class="col-md-4 control-label">Status</label>
+                        <div class="form-group{{ $errors->has('PotPel') ? ' has-error' : '' }}">
+                            <label for="PotPel" class="col-md-4 control-label">Potensi Pelanggan</label>
 
                             <div class="col-md-6">
-                                <input id="Status" type="Status" class="form-control" name="Status" value="{{ old('Status') }}" required>
+                                <input id="PotPel" type="PotPel" class="form-control" name="PotPel" value="{{ old('PotPel') }}" required>
 
-                                @if ($errors->has('Status'))
+                                @if ($errors->has('PotPel'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Status') }}</strong>
+                                        <strong>{{ $errors->first('PotPel') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
 
-
+                        <input type="hidden"  name="idUser" value="{{$UID}}">
 
 
                         <div class="form-group">

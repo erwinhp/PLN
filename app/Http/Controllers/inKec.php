@@ -7,13 +7,17 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\kec;
 use App\Kab;
+use Illuminate\Support\Facades\Gate;
 
 class inKec extends Controller
 {
 
   public function index()
   {
-
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
         $kec=kec::all();
         $Kab=Kab::all();
           return view('index.IndexKec')->with('kec',$kec)->with('Kab',$Kab);
@@ -28,7 +32,10 @@ class inKec extends Controller
    */
   public function create()
   {
-
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $kec=kec::all();
     $Kab=kab::all();
     return View('input.cKec')
@@ -60,6 +67,10 @@ class inKec extends Controller
    */
   public function show($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
   $kec=kec::find($id);
 
   }
@@ -72,6 +83,10 @@ class inKec extends Controller
    */
   public function edit($id)
   {
+    if(!Gate::allows('isAdmin'))
+    {
+       return response("404", 404);
+    }
     $kec=kec::find($id);
     $Kab=kab::all();
     return View('edit.eKec')

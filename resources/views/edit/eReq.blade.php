@@ -5,29 +5,26 @@
   <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="card">
-              <h5 class="card-header">Edit Request</h5>
+              <h5 class="card-header">Edit Provinsi</h5>
               <div class="card-body">
                 <div class="panel-bSody">
-                    <form class="form-horizontal" role="form" method="post" action="/req/{{$Req->id}}" >
+                    <form class="form-horizontal" role="form" method="post" action="/req/{{$req->id}}" >
 
 
                         {{ csrf_field() }}
 
-
-
-
-                        <div class="form-group{{ $errors->has('idDes') ? ' has-error' : '' }}">
-                    <label for="idDes" class="col-md-4 control-label">Desa</label>
+                        <div class="form-group{{ $errors->has('idDus') ? ' has-error' : '' }}">
+                    <label for="idDus" class="col-md-4 control-label">Dusun</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm"name="idDes" value="{{$Ket->idDes}}" required>
-                        @foreach ($Desa as $u)
-                          <option value="{{$u->id}}"->{{$u->Des}}</option>
+                      <select class="form-control input-sm"name="idDus" value="{{$req->idDus}}" required>
+                        @foreach ($Dus as $u)
+                          <option value="{{$u->id}}"->{{$u->Dusun}}</option>
                         @endforeach
                       </select >
-                        @if ($errors->has('idDes'))
+                        @if ($errors->has('idDus'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('idDes') }}</strong>
+                                <strong>{{ $errors->first('idDus') }}</strong>
                             </span>
                         @endif
                     </div>
@@ -38,7 +35,7 @@
                             <label for="RtRw" class="col-md-4 control-label">RtRw</label>
 
                             <div class="col-md-6">
-                                <input id="RtRw" type="RtRw" class="form-control" name="RtRw" value="{{$Ket->RtRw}}" required>
+                                <input id="RtRw" type="RtRw" class="form-control" name="RtRw" value="{{$req->RtRw}}" required>
 
                                 @if ($errors->has('RtRw'))
                                     <span class="help-block">
@@ -49,34 +46,34 @@
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('har_bes') ? ' has-error' : '' }}">
-                            <label for="RtRw" class="col-md-4 control-label">Status</label>
+                        <div class="form-group{{ $errors->has('PotPel') ? ' has-error' : '' }}">
+                            <label for="PotPel" class="col-md-4 control-label">Potensi Pelanggan</label>
 
                             <div class="col-md-6">
-                                <input id="Status" type="Status" class="form-control" name="Status" value="{{$Req->Status}}" required>
+                                <input id="PotPel" type="PotPel" class="form-control" name="PotPel" value="{{$req->PotPel}}" required>
 
-                                @if ($errors->has('Status'))
+                                @if ($errors->has('PotPel'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('Status') }}</strong>
+                                        <strong>{{ $errors->first('PotPel') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
 
-                            <input type="hidden" name="_method" value="put">
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Edit
-                                    </button>
-                                </div>
+                        <input type="hidden" name="_method" value="put">
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Edit
+                                </button>
                             </div>
+                        </div>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    @endsection
+      </div>
+      </div>
+      @endsection

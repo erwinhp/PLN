@@ -54,3 +54,8 @@ Route::resource ('admin/dusun','inDus');
 Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/user','cuser');
 });
+
+
+Route::get('/markAsRead', function()
+{ auth()->user()->unreadNotifications->markAsRead();
+});

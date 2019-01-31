@@ -58,21 +58,23 @@
                             </div>
                         </div>
 
+              
+
                         <div class="form-group{{ $errors->has('Status') ? ' has-error' : '' }}">
-                            <label for="Status" class="col-md-4 control-label">Status</label>
+                    <label for="Status" class="col-md-4 control-label">Status</label>
 
-                            <div class="col-md-6">
-                                <input id="Status" type="Status" class="form-control" name="Status" value="{{$User->Status}}" required>
-
-                                @if ($errors->has('Status'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('Status') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-
+                    <div class="col-md-6">
+                      <select class="form-control input-sm"name="Status" value="{{$User->Status}}" required>
+                        <option value="1"> User </option>
+                        <option value="0"> Admin </option>
+                      </select >
+                        @if ($errors->has('Status'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('Status') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
 
                                                 <input type="hidden" name="_method" value="put">
                                                 <div class="form-group">
