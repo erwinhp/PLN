@@ -1,5 +1,6 @@
 @extends('layouts.Dash')
 @section('content')
+
 <?php
   $pr2='';
  ?>
@@ -7,29 +8,49 @@
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
-    <form action="" method="get" >
-    <select name="var2" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0">kabupaten</option>
-    @foreach ($Kab as $k)
-    <option value="{{$k->id}}">{{$k->kabupaten}}</option>
-    @endforeach
-    </select>
-    <?php
-    if (isset($_GET['var2'])) {$pr2=$_GET['var2'];}
-    $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
-     ?>
+<link rel="stylesheet" href="{{URL::to('/')}}/assets/libs/css/Index.css">
+
+
+<div class="select">
+    <form name="refreshForm" action="" method="get" style="font-family: 'Russo One', sans-serif;font-style: bold">
+      <select id="foo" name="var2" class="center-on-page" onchange="this.form.submit();">      
+<?php
+      if (isset($_GET['var2'])) {$pr2=$_GET['var2'];}
+      $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
+?>
+       <option value="$kab" style="display:none;font-size:20px;">Kabupaten</option>
+        @foreach ($Kab as $k)
+        <option name="visited" value="{{$k->id}}">{{$k->kabupaten}}</option>
+        @endforeach
+      </select>
     </form>
+</div>
 
-
-
-
+<?php $numb=0;?>
+     @foreach ($kabt as $ke)
+    <?php $numb=$numb+1;?>
+@endforeach
 
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    <span class="pull-right clearfix">
-      <a href="/admin/kab/create" class="btn btn-xs btn-primary ">Buat Kecamatan</a>
+    <div style="width:100%;margin-top: 20px;">
 
-      <a href="/admin/des/create" class="btn btn-xs btn-primary ">Buat Desa</a>
-    </span>
+<div class="button1">
+  <a>TOTAL KECAMATAN = <?php echo $numb; ?></a>
+  <div class="mask1"></div>
+</div>
+
+<div class="button">
+  <a href="/admin/kec/create">Buat Kecamatan</a>
+  <div class="mask"></div>
+</div>
+
+<div class="button">
+  <a href="/admin/des/create">Buat Desa</a>
+  <div class="mask"></div>
+</div>
+
+
+     <span class="pull-right clearfix"></span>
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -37,9 +58,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>kecamatan</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>KECAMATAN</th>
+                                <th>EDIT</th>
+                                <th>DELETE</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -53,13 +74,15 @@
 
                         <th>{{$ke->kecamatan}}</th>
                         <th><form class="" action="/admin/kec/{{$ke->id}}" method="post">
-                        <a href="/admin/kec/{{$ke->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
+                        <div class="container">
+                        <a href="/admin/kec/{{$ke->id}}/edit" class="btn btn-xs btn-primary">EDIT</a>
+                      </div>
                         </form></th>
                       <th>
                         <form class="" action="/admin/kec/{{$ke->id}}" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="{{csrf_token()}}">
-                          <input type="submit" class="btn btn-xs btn-primary" value="delete">
+                          <input onclick="return confirm('Apakah anda yakin untuk menghapus? Lanjutkan')" type="submit" class="btn btn-xs btn-primary" value="DELETE">
                         </form>
                       </th>
                           </tbody>
@@ -71,7 +94,6 @@
                 </div>
               </div>
             </div>
-
-
+</div>
 
 @endsection

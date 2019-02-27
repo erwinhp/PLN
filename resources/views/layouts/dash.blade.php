@@ -31,7 +31,7 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="../home">STABILITAS RD KALSEL</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: blue">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -94,7 +94,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
                                 </li>
                             </ul>
                         </li>
@@ -155,12 +155,12 @@
                                <a class="nav-link" href="{{URL::to('/')}}/admin/user" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Grafik</a>
+                                <a class="nav-link" href="../pages/data-tables.html" data-toggle="" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Grafik</a>
                             </li>
                             @endcan
                             @can('isUser')
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{URL::to('/')}}/req" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Request</a>
+                                <a class="nav-link" href="{{URL::to('/')}}/req" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-info-circle"></i>  Request</a>
                              </li>
                             @endcan
                             @can('isAdmin')
@@ -203,7 +203,6 @@
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
-
                     <!-- ============================================================== -->
                       @yield('content')
                     <!-- ============================================================== -->

@@ -142,17 +142,17 @@ John Abraham</span>is now following you
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Tabel</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
-                                       <li class="nav-item">
-                                            <a class="nav-link" href="tabel1.html">Kecamatan</a>
+                                         <li class="nav-item">
+                                            <a class="nav-link" href="/admin/kab">Kabupaten</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="tabel2.html">Kabupaten</a>
+                                            <a class="nav-link" href="/admin/kec">Kecamatan</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="tabel3.html">Desa</a>
+                                            <a class="nav-link" href="/admin/des">Desa</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="tabel4.html">Dusun</a>
+                                            <a class="nav-link" href=/"admin/dusun">Dusun</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -190,37 +190,54 @@ John Abraham</span>is now following you
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="example4" class="table table-striped table-bordered" style="width:100%">
-                                        <thead>
-                                             <tr>
-                                                <th>Provinsi</th>
-                                                <th>Tanggal</th>
-                                                <th>Rasio Listrik</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Kalimantan Selatan</td>
-                                                <td>20/11/2018</td>
-                                                <td>5%</td>                                            
-                                            </tr>
-                                            <tr>
-                                                <td>Kalimantan Selatan</td>
-                                                <td>20/11/2018</td>
-                                                <td>3%</td> 
-                                            </tr>
-                                            <tr>
-                                                <td>Kalimantan Selatan</td>
-                                                <td>21/11/2018</td>
-                                                <td>4%</td> 
-                                            </tr>
-                                            
-                                        <tfoot>
-                                            <tr>
-                                                <th>Provinsi</th>
-                                                <th>Tanggal</th>
-                                                <th>Rasio Listrik</th>
-                                            </tr>
-                                        </tfoot>
+                                         <!DOCTYPE HTML>
+<html>
+<head>
+  <script type="text/javascript">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer", {            
+      title:{
+        text: "PLN & Non PLN"              
+      },
+
+      data: [  //array of dataSeries     
+      { //dataSeries - first quarter
+   /*** Change type "column" to "bar", "area", "line" or "pie"***/        
+       type: "column",
+       name: "PLN",
+       dataPoints: [
+       { label: "Takisung", y: 18 },
+       { label: "Barabai", y: 29 },
+       { label: "Martapura", y: 40 },                                    
+       { label: "Banjarmasin", y: 34 },
+       { label: "Banjarbaru", y: 24 }
+       ]
+     },
+     { //dataSeries - second quarter
+
+      type: "column",
+      name: "Non PLN",                
+      dataPoints: [
+      { label: "Takisung", y: 3 },
+      { label: "Barabai", y: 3 },
+      { label: "Martapura", y: 1 },                                    
+      { label: "Banjarmasin", y: 6 },
+      { label: "Banjarbaru ", y: 4 }
+      ]
+    }
+    ]
+  });
+
+    chart.render();
+  }
+  </script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
+</html>
                                     </table>
                                 </div>
                             </div>
