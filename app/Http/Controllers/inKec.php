@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\kec;
 use App\Kab;
+use DB;
 use Illuminate\Support\Facades\Gate;
 
 class inKec extends Controller

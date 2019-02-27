@@ -37,6 +37,45 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
 
+
+
+                      <!--NOTIFICATION-->
+                      <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
+                        <li class="nav-item dropdown notification" >
+                          <a class="nav-link nav-icons" href="#"  id="markAsRead" onclick="markNotificationAsRead('<?php echo e(count(auth()->user()->unreadNotifications)); ?>')" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="glyphicon glyphicon-globe"></span>
+
+                            <span class="badge"><?php echo e(count(auth()->user()->unreadNotifications)); ?></span>
+                          </a>
+
+
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                                <li>
+                                    <div class="notification-title"> Notification</div>
+                                    <div class="notification-list">
+                                        <div class="list-group">
+                                          <?php $__currentLoopData = auth()->user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <a href="<?php echo e(URL::to('/')); ?>/req/<?php echo e($notification->data['req']['id']); ?>" class="list-group-item list-group-item-action active">
+                                                <div class="notification-info">
+                                                    <div class="notification-list-user-block"><span class="notification-list-user-name"><?php echo e($notification->data['User']['name']); ?></span> Melakukan Request RT <?php echo e($notification->data['req']['RtRw']); ?>
+
+                                                        <div class="notification-date"><?php echo e($notification->created_at); ?></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <?php endif; ?>
+                        <!-- NOTIFICATION USER-->
+                        <!--
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isUser')): ?>
                         <li class="nav-item dropdown notification">
                             <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
@@ -52,30 +91,6 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">USERS </span>is now following you
-                                                        <div class="notification-date">2 days ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -84,11 +99,13 @@
                                 </li>
                             </ul>
                         </li>
+                        <?php endif; ?>
+                      -->
+                          <!-- DORPDOWN  USER SIGN OUT-->
                         <li class="nav-item dropdown connection">
                         </li>
-
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
+                            <a class="nav-link nav-icons" href="<?php echo e(URL::to('/')); ?>/markAsRead" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name">USERS </h5>
@@ -236,6 +253,8 @@
     <script src="<?php echo e(URL::to('/')); ?>/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="<?php echo e(URL::to('/')); ?>/assets/libs/js/dashboard-ecommerce.js"></script>
     <script src="<?php echo e(URL::to('/')); ?>/assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="<?php echo e(URL::to('/')); ?>/asset/js/main.js"></script>
+    <script src="<?php echo e(asset('js/main.js')); ?>"></script>
 </body>
 </div>
 </html>
