@@ -1,0 +1,191 @@
+/* Image Blink */
+.a {
+    animation: blink 1.5s;
+    animation-iteration-count: infinite;
+     z-index: 1;
+     position: absolute;
+ }
+
+@keyframes blink{
+  0% {opacity: 1; }
+  50% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+  img {
+  position: absolute;
+  transition: opacity .5s ease-in;
+   z-index: 1;
+   height:200px;
+}
+img + img { opacity: 0; }
+
+
+/* Image Slide */
+h4 {
+    top: 5px;
+    position:relative;
+    font-size: 20px;
+    color:#28a745;
+}
+.sb-description {
+    float: right;
+    font-weight: bold;
+    right: auto;
+    width:auto;
+    z-index: 20;
+    height: 35px;
+    text-align: right;
+    position: relative;
+    background: #CBBFAE;
+    background: rgba(190,176,155, 0.4);
+    border-left: 0px solid rgba(255,255,255,0.7);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);   
+    opacity: 0;
+    color: #2e2e2e;
+    -webkit-transition: all 200ms;
+    -moz-transition: all 200ms;
+    -o-transition: all 200ms;
+    -ms-transition: all 200ms;
+    transition: all 200ms;
+}
+
+.slides,.slide,.sb-description {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);  
+    opacity: 1;
+}
+
+.slides,.slide,.sb-description:hover {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
+    filter: alpha(opacity=99);  
+    background: rgba(190,176,155, 0.7);
+}
+
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+html, body {
+    background: linear-gradient(150deg, #15a1b8 0%, #15a1b8 50%, #15677b 50%, #15677b 100%);
+    background-repeat: 
+    height :100%;
+}
+
+.slides {
+    padding: 0;
+    width: 100%;
+    height: 580px;
+    display: block;
+    margin: 0px ;
+    position: relative;
+
+}
+
+.slides * {
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.slides input { display: none; }
+
+.slide-container { display: block; }
+
+.slide {
+
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 580px;
+    display: block;
+    position: absolute;
+
+    transform: scale(0);
+
+    transition: all .7s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 580px;
+}
+
+.nav label {
+    width: 100px;
+    height: 0px;
+    display: none;
+    position: absolute;
+
+      opacity: 0;
+    z-index: 9;
+    cursor: pointer;
+
+    transition: opacity .2s;
+
+    color: #FFF;
+    font-size: 110pt;
+    text-align: center;
+    line-height: 580px;
+    font-family: "Varela Round", sans-serif;
+    background-color: rgba(255, 255, 255, .3);
+    text-shadow: 0px 0px 15px rgb(119, 119, 119);
+}
+
+.slide:hover + .nav label { opacity: 0.5; }
+
+.nav label:hover { opacity: 1; }
+
+.nav .next { right: 0; }
+
+input:checked + .slide-container  .slide {
+    opacity: 1;
+
+    transform: scale(1);
+
+    transition: opacity 1s ease-in-out;
+}
+
+input:checked + .slide-container .nav label { display: block; }
+
+.nav-dots {
+    width: 100%;
+    bottom: 9px;
+    height: 11px;
+    display: block;
+    position: absolute;
+    text-align: center;
+}
+
+.nav-dots .nav-dot {
+    top: -5px;
+    width: 11px;
+    height: 11px;
+    margin: 0 4px;
+    position: relative;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.nav-dots .nav-dot:hover {
+    cursor: pointer;
+    background-color:grey;
+}
+
+input#img-1:checked ~ .nav-dots label#img-dot-1,
+input#img-2:checked ~ .nav-dots label#img-dot-2,
+input#img-3:checked ~ .nav-dots label#img-dot-3,
+input#img-4:checked ~ .nav-dots label#img-dot-4,
+input#img-5:checked ~ .nav-dots label#img-dot-5,
+input#img-6:checked ~ .nav-dots label#img-dot-6 {
+    background:grey;
+}
