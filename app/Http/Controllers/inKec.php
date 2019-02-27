@@ -130,4 +130,12 @@ class inKec extends Controller
   return redirect()->action('inKec@index');
 
   }
+
+  public function message(Request $kabt)
+{
+    $kec = $kabt->all();
+    unset($kec['_token']);
+    $store = DB::table("kec")->insert([$kec]);
+    return Redirect('Users/home')->with('message',"success");
+}
 }

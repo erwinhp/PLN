@@ -5,7 +5,7 @@
   <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="card">
-              <h5 class="card-header">Edit Kabupaten</h5>
+              <h5 class="card-header">Edit Pengguna</h5>
               <div class="card-body">
                 <div class="panel-bSody">
                     <form class="form-horizontal" role="form" method="post" action="/admin/user/{{$User->id}}" >

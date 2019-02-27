@@ -10,13 +10,14 @@
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
+<link rel="stylesheet" href="{{URL::to('/')}}/assets/libs/css/Index.css">
 
 
 
-
+<div class="select">
     <form action="" method="get" >
     <select name="var2" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0">kabupaten</option>
+    <option value="0" style="display:none;font-size:20px;">Kabupaten</option>
     @foreach ($Kab as $k)
     <option value="{{$k->id}}">{{$k->kabupaten}}</option>
     @endforeach
@@ -26,10 +27,12 @@
     $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
      ?>
     </form>
+</div>
 
+<div class="select">
     <form action="" method="get" >
     <select name="var3" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0">Kecamatan</option>
+    <option value="0" style="display:none;font-size:20px;">Kecamatan</option>
     @foreach ($kabt as $ke)
     <option value="{{$ke->id}}">{{$ke->kecamatan}}</option>
     @endforeach
@@ -39,10 +42,12 @@
     $kect = DB::select('SELECT id,Des,idKec FROM desa WHERE (idKec)=:j', ['j' => $pr3]);
      ?>
     </form>
+</div>
 
+<div class="select">
     <form action="" method="get" >
     <select name="var4" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0">Desa</option>
+    <option value="0" style="display:none;font-size:20px;">Desa</option>
     @foreach ($kect as $kec1)
     <option value="{{$kec1->id}}">{{$kec1->Des}}</option>
     @endforeach
@@ -52,13 +57,30 @@
     $Dest = DB::select('SELECT id,Dusun,idDes FROM dus WHERE (idDes)=:j', ['j' => $pr]);
      ?>
     </form>
+</div>
 
 
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    <span class="pull-right clearfix">
-      <a href="/admin/dusun/create" class="btn btn-xs btn-primary ">Buat Dusun</a>
+<?php $numb=0;?>
+     @foreach ($Dest as $de)
+    <?php $numb=$numb+1;?>
+@endforeach
 
-    </span>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+<div style="width:100%;margin-top: 20px;">
+    
+<div class="button">
+  <a href="/admin/dusun/create">
+    Buat Dusun
+  </a>
+  <div class="mask"></div>
+</div>
+
+<div class="button1">
+  <a>TOTAL DUSUN = <?php echo $numb; ?></a>
+  <div class="mask1"></div>
+</div>
+
+    <span class="pull-right clearfix"></span>
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -66,10 +88,10 @@
                         <thead>
                             <tr>
                               <th>No</th>
-                                <th>Dusun</th>
-                                <th>Detail Dusun</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>DUSUN</th>
+                                <th>DETAIL DUSUN</th>
+                                <th>EDIT</th>
+                                <th>DELETE</th>
 
                             </tr>
                           </thead>
@@ -92,13 +114,13 @@
 
 
                         <th><form class="" action="/admin/dusun/{{$de->id}}" method="post">
-                        <a href="/admin/dusun/{{$de->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
+                        <a href="/admin/dusun/{{$de->id}}/edit" class="btn btn-xs btn-primary">EDIT</a>
                         </form></th>
                       <th>
                         <form class="" action="/admin/dusun/{{$de->id}}" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="{{csrf_token()}}">
-                          <input type="submit" class="btn btn-xs btn-primary" value="delete">
+                          <input onclick="return confirm('Apakah anda yakin untuk menghapus? Lanjutkan')" type="submit" class="btn btn-xs btn-primary" value="DELETE">
                         </form>
                       </th>
                           </tbody>

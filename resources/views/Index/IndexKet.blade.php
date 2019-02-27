@@ -69,7 +69,7 @@ $_SESSION['GD'] = $ses;
                         <form class="" action="/admin/ket/{{$de->id}}" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="{{csrf_token()}}">
-                          <input type="submit" class="btn btn-xs btn-primary" value="delete">
+                          <input onclick="return confirm('Apakah anda yakin untuk menghapus? Lanjutkan')" type="submit" class="btn btn-xs btn-primary" value="delete">
                         </form>
                       </th>
                           </tbody>
