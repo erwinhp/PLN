@@ -72,8 +72,13 @@ h4 {
 @import url(https://fonts.googleapis.com/css?family=Varela+Round);
 
 html, body {
+<<<<<<< HEAD
     background: linear-gradient(150deg, #15a1b8 0%, #15a1b8 50%, #15677b 50%, #15677b 100%);
     background-repeat:
+=======
+    background: white;
+    background-repeat: 
+>>>>>>> 60bf4744b667fdc133ed66127d758ac5eb7287c4
     height :100%;
 }
 
