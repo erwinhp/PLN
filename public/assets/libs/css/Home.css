@@ -1,6 +1,6 @@
 /* Image Blink */
 .a {
-    animation: blink 1.5s;
+    animation: blink 3.5s;
     animation-iteration-count: infinite;
      z-index: 1;
      position: absolute;
@@ -47,7 +47,7 @@ h4 {
     background: rgba(190,176,155, 0.4);
     border-left: 0px solid rgba(255,255,255,0.7);
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);   
+    filter: alpha(opacity=0);
     opacity: 0;
     color: #2e2e2e;
     -webkit-transition: all 200ms;
@@ -59,13 +59,13 @@ h4 {
 
 .slides,.slide,.sb-description {
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-    filter: alpha(opacity=80);  
+    filter: alpha(opacity=80);
     opacity: 1;
 }
 
 .slides,.slide,.sb-description:hover {
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=99)";
-    filter: alpha(opacity=99);  
+    filter: alpha(opacity=99);
     background: rgba(190,176,155, 0.7);
 }
 
@@ -73,7 +73,7 @@ h4 {
 
 html, body {
     background: linear-gradient(150deg, #15a1b8 0%, #15a1b8 50%, #15677b 50%, #15677b 100%);
-    background-repeat: 
+    background-repeat:
     height :100%;
 }
 

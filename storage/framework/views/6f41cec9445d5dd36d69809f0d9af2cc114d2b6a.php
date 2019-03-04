@@ -7,21 +7,6 @@
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
-
-
-
-    <form action="" method="get" >
-    <select id="kecs" name="var2" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0">kabupaten</option>
-    <?php $__currentLoopData = $Kab; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <option value="<?php echo e($k->id); ?>"><?php echo e($k->kabupaten); ?></option>
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    </select>
-    <?php
-    if (isset($_GET['var2'])) {$pr2=$_GET['var2'];}
-    $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
-     ?>
-
 <link rel="stylesheet" href="<?php echo e(URL::to('/')); ?>/assets/libs/css/Index.css">
 
 
@@ -37,7 +22,6 @@
         <option name="visited" value="<?php echo e($k->id); ?>"><?php echo e($k->kabupaten); ?></option>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </select>
-
     </form>
 </div>
 
@@ -79,36 +63,28 @@
                             </tr>
                           </thead>
                           <tbody>
-                          <?php $num=0;?>
-                          <?php $__currentLoopData = $kabt; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <th>
-                          <?php $num=$num+1;
-                          echo $num;
-                          ?>
-                        </th>
+                            <?php $num=0;?>
+                            <?php $__currentLoopData = $kabt; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <th>
+                              <?php $num=$num+1;
+                              echo $num;
+                              ?>
+                            </th>
 
                         <th><?php echo e($ke->kecamatan); ?></th>
-
-                      <th>
-                        <form class="" action="/admin/kec/<?php echo e($ke->id); ?>" method="post">
-                          <a href="/admin/kec/<?php echo e($ke->id); ?>/edit" class="btn btn-xs btn-primary">Edit</a>
-                        </form>
-                      </th>
-
                         <th><form class="" action="/admin/kec/<?php echo e($ke->id); ?>" method="post">
                         <div class="container">
                         <a href="/admin/kec/<?php echo e($ke->id); ?>/edit" class="btn btn-xs btn-primary">EDIT</a>
                       </div>
                         </form></th>
-
                       <th>
                         <form class="" action="/admin/kec/<?php echo e($ke->id); ?>" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
                           <input onclick="return confirm('Apakah anda yakin untuk menghapus? Lanjutkan')" type="submit" class="btn btn-xs btn-primary" value="DELETE">
                         </form>
-                        </th>
-                        </tbody>
+                      </th>
+                          </tbody>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </table>
 
@@ -118,16 +94,6 @@
               </div>
             </div>
 </div>
-
-<<<<<<< HEAD
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script>
-            $(document).ready(function(){
-              $("button").click(function(){
-                $("p").slideToggle();
-              });
-            });
-            </script>
 
 <?php $__env->stopSection(); ?>
 

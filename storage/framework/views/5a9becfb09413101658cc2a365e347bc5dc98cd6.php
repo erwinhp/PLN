@@ -1,5 +1,6 @@
 <?php $__env->startSection('content'); ?>
-
+<div class="card">
+    <div class="card-body">
 <span class="a">
 <img src="http://3.bp.blogspot.com/-svhCMHuqHkY/VEZ1gCZD5FI/AAAAAAAAAS4/ADq4LZnUVkU/s1600/kntr.jpg">
 <img src="http://3.bp.blogspot.com/-svhCMHuqHkY/VEZ1gCZD5FI/AAAAAAAAAS4/ADq4LZnUVkU/s1600/kntr.jpg">
@@ -19,7 +20,7 @@
             <label for="img-2" class="next">&#x203a;</label>
         </div>
     </li>
-        
+
     <input type="radio" name="radio-btn" id="img-2" />
     <li class="slide-container">
         <div class="slide">
@@ -85,8 +86,9 @@
     </li>
 </ul>
 </ul>
-
-
+</div>
+</div>
 <link rel="stylesheet" href="<?php echo e(URL::to('/')); ?>/assets/libs/css/Home.css">
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.dash', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

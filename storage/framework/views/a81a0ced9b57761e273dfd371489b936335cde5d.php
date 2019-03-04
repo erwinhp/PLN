@@ -5,10 +5,19 @@
     <!-- fixed header  -->
     <!-- ============================================================== -->
 
+<link rel="stylesheet" href="<?php echo e(URL::to('/')); ?>/assets/libs/css/Index.css">
+
 
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+<div class="tab">
+<div class="button">
+  <a href="/register">
+    Buat User
+  </a>
+  <div class="mask"></div>
+</div>
+</div>
     <span class="pull-right clearfix">
-      <a href="/register" class="btn btn-xs btn-primary">Buat User</a>
     </span>
         <div class="card">
             <div class="card-body">
@@ -18,9 +27,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>User</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>USER</th>
+                                <th>EDIT</th>
+                                <th>DELETE</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -34,13 +43,13 @@
 
                         <th><?php echo e($k->name); ?></th>
                         <th><form class="" action="/admin/user/<?php echo e($k->id); ?>" method="post">
-                        <a href="/admin/user/<?php echo e($k->id); ?>/edit" class="btn btn-xs btn-primary">Edit</a>
+                        <a href="/admin/user/<?php echo e($k->id); ?>/edit" class="btn btn-xs btn-primary">EDIT</a>
                         </form>
                       <th>
                         <form class="" action="/admin/user/<?php echo e($k->id); ?>" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-                          <input type="submit" class="btn btn-xs btn-primary" value="Delete">
+                          <input onclick="return confirm('Apakah anda yakin untuk menghapus? Lanjutkan')" type="submit" class="btn btn-xs btn-primary" value="DELETE">
                         </form>
                       </th>
                           </tbody>
