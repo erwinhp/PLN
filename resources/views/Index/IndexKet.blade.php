@@ -6,11 +6,7 @@
   $pr2='';
   $pr3='';
   $pr4='';
-$ses = $_SESSION['idDus'];
-if(!isset($_SESSION))
-{
-session_start();
-}
+
 //$_COOKIE['Getids'] = $_GET['idDus'];
 $ses = $_REQUEST['idDus'];
 $_SESSION['GD'] = $ses;

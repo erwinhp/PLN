@@ -55,6 +55,13 @@ Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/user','cuser');
 });
 
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/req','inReqAd');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/notifall','notificationAll');
+});
 
 Route::get('/markAsRead', function()
 { auth()->user()->unreadNotifications->markAsRead();

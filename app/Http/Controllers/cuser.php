@@ -12,8 +12,10 @@ class cuser extends Controller
     {
        return response("404", 404);
     }
-    $user=User::all();
-    return view('index/indexUser')->with('User',$user);
+    //$user=User::all();
+    $user = User::where('Status', '=', 0)->get();
+    $user1 = User::where('Status', '==', 1)->get();
+    return view('index/indexUser')->with('User',$user)->with('User1',$user1);
   }
 
   /**
@@ -27,9 +29,7 @@ class cuser extends Controller
     {
        return response("404", 404);
     }
-    $kab=Kab::all();
-    return View('input.cKab')
-    ->with('Kab',$kab);
+    return View('input.cUser');
   }
 
   /**
@@ -41,10 +41,13 @@ class cuser extends Controller
   public function store(Request $request)
   {
 
-  $kab = new Kab;
-  $kab -> kabupaten = $request->kabupaten;
-  $kab->save();
-  return redirect()->action('inKab@index');
+  $user = new User;
+  $user -> name = $request->name;
+  $user -> email = $request->email;
+  $user-> Password= bcrypt($request->password);
+  $user -> Status = $request->Status;
+  $user->save();
+  return redirect()->action('cuser@index');
   //return redirect()->action('tugasC@index');
   }
 

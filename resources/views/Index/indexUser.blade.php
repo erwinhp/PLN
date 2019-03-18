@@ -12,7 +12,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="tab">
 <div class="button">
-  <a href="/register">
+  <a href="/admin/user/create">
     Buat User
   </a>
   <div class="mask"></div>
@@ -22,6 +22,13 @@
     </span>
         <div class="card">
             <div class="card-body">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href="{{URL::to('/')}}/admin/user">Admin</a>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{URL::to('/')}}/admin/user">User</a>
+                  </li>
                 <div class="table-responsive">
                     <table id="example4" class="table table-striped table-bordered" style="width:100%">
 
@@ -58,6 +65,7 @@
                         </table>
 
                     </div>
+                  </ul>
                   </div>
                 </div>
               </div>

@@ -40,16 +40,19 @@
 
 
                       <!--NOTIFICATION-->
+
+                      <!--SELECT NOTIF-->
+
                       @can('isAdmin')
                         <li class="nav-item dropdown notification" >
-                          <a class="nav-link nav-icons" href="#"  id="markAsRead" onclick="markNotificationAsRead('{{count(auth()->user()->unreadNotifications)}}')" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="glyphicon glyphicon-globe"></span>
+                          <a class="nav-link nav-icons" href="#"  id="notifs"  data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="fas fa-fw fa-bell" onclick="markNotificationAsRead('{{count(auth()->user()->unreadNotifications)}}')"></i> <span class="glyphicon glyphicon-globe" ></span>
 
-                            <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+                            <span class="badge" id="nums">{{count(auth()->user()->unreadNotifications)}}</span>
                           </a>
 
 
-                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown" >
                                 <li>
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-list">
@@ -63,11 +66,12 @@
                                                 </div>
                                             </a>
                                             @endforeach
+                                          </div>
                                         </div>
-                                    </div>
                                 </li>
+
                                 <li>
-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                                    <div class="list-footer"> <a href="{{URL::to('/')}}/admin/notifall">View all notifications</a></div>
                                 </li>
                             </ul>
                         </li>
@@ -104,15 +108,28 @@
                         <li class="nav-item dropdown connection">
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-icons" href="{{URL::to('/')}}/markAsRead" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">USERS </h5>
-                                    <span class="status"></span><span class="ml-2">Available</span>
+                                  @can('isAdmin')
+                                    <h5 class="mb-0 text-white nav-user-name">Admin</h5>
+                                  @endcan
+                                  @can('isUser')
+                                    <h5 class="mb-0 text-white nav-user-name">User</h5>
+                                  @endcan
+                                  <?php
+                                    $splitName = explode(' ', auth()->user()->name, 3);
+                                    $first_name = $splitName[1];
+                                    list($firstName, $lastName) = array_pad(explode(' ', trim(auth()->user()->name)), 2, null)
+                                    ?>
+                                  <!--  <span class="status"></span><span class="ml-2">{{$first_name}}</span>-->
                                 </div>
-
-                                <a class="dropdown-item" href="admin/user//edit"><i class="fas fa-user mr-2"></i>Pengguna</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Pengaturan</a>
+                                <?php
+                                $a =auth()->user()->id
+                                ?>
+                                @can('isAdmin')
+                                <a class="dropdown-item" href="{{URL::to('/')}}/admin/user/{{$a}}/edit"><i class="fas fa-user mr-2"></i>Pengguna</a>
+                                @endcan
                                 <a class="dropdown-item" href="{{ route('logout') }}" class="fas fa-power-off mr-2"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -137,7 +154,7 @@
            <div class="nav-left-sidebar sidebar-dark">
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <a class="d-xl-none d-lg-none" href="{{URL::to('/')}}/home">Dashboard</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -148,8 +165,7 @@
                             </li>
                             @can('isAdmin')
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
-
+                                <a class="nav-link active" href="{{URL::to('/')}}/home" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
                             </li>
                            <li class="nav-item ">
                                <a class="nav-link" href="{{URL::to('/')}}/admin/user" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
@@ -180,6 +196,9 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{URL::to('/')}}/admin/dusun">Dusun</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{URL::to('/')}}/admin/req">Request</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -228,6 +247,7 @@
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
+
     <!-- jquery 3.3.1 -->
     <script src="{{URL::to('/')}}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
@@ -252,6 +272,9 @@
     <script src="{{URL::to('/')}}/assets/libs/js/dashboard-ecommerce.js"></script>
     <script src="{{URL::to('/')}}/asset/js/main.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
+
+
 </body>
 </div>
 </html>

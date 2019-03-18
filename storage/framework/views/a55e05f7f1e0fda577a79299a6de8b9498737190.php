@@ -31,7 +31,7 @@
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="../home">STABILITAS RD KALSEL</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: blue">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
@@ -40,16 +40,19 @@
 
 
                       <!--NOTIFICATION-->
+
+                      <!--SELECT NOTIF-->
+
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                         <li class="nav-item dropdown notification" >
-                          <a class="nav-link nav-icons" href="#"  id="markAsRead" onclick="markNotificationAsRead('<?php echo e(count(auth()->user()->unreadNotifications)); ?>')" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="glyphicon glyphicon-globe"></span>
+                          <a class="nav-link nav-icons" href="#"  id="notifs"  data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="fas fa-fw fa-bell" onclick="markNotificationAsRead('<?php echo e(count(auth()->user()->unreadNotifications)); ?>')"></i> <span class="glyphicon glyphicon-globe" ></span>
 
-                            <span class="badge"><?php echo e(count(auth()->user()->unreadNotifications)); ?></span>
+                            <span class="badge" id="nums"><?php echo e(count(auth()->user()->unreadNotifications)); ?></span>
                           </a>
 
 
-                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown" >
                                 <li>
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-list">
@@ -64,11 +67,12 @@
                                                 </div>
                                             </a>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                          </div>
                                         </div>
-                                    </div>
                                 </li>
+
                                 <li>
-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
+                                    <div class="list-footer"> <a href="<?php echo e(URL::to('/')); ?>/admin/notifall">View all notifications</a></div>
                                 </li>
                             </ul>
                         </li>
@@ -105,15 +109,28 @@
                         <li class="nav-item dropdown connection">
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-icons" href="<?php echo e(URL::to('/')); ?>/markAsRead" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">USERS </h5>
-                                    <span class="status"></span><span class="ml-2">Available</span>
+                                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
+                                    <h5 class="mb-0 text-white nav-user-name">Admin</h5>
+                                  <?php endif; ?>
+                                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isUser')): ?>
+                                    <h5 class="mb-0 text-white nav-user-name">User</h5>
+                                  <?php endif; ?>
+                                  <?php
+                                    $splitName = explode(' ', auth()->user()->name, 3);
+                                    $first_name = $splitName[1];
+                                    list($firstName, $lastName) = array_pad(explode(' ', trim(auth()->user()->name)), 2, null)
+                                    ?>
+                                  <!--  <span class="status"></span><span class="ml-2"><?php echo e($first_name); ?></span>-->
                                 </div>
-
-                                <a class="dropdown-item" href="admin/user//edit"><i class="fas fa-user mr-2"></i>Pengguna</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Pengaturan</a>
+                                <?php
+                                $a =auth()->user()->id
+                                ?>
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
+                                <a class="dropdown-item" href="<?php echo e(URL::to('/')); ?>/admin/user/<?php echo e($a); ?>/edit"><i class="fas fa-user mr-2"></i>Pengguna</a>
+                                <?php endif; ?>
                                 <a class="dropdown-item" href="<?php echo e(route('logout')); ?>" class="fas fa-power-off mr-2"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -139,7 +156,7 @@
            <div class="nav-left-sidebar sidebar-dark">
             <div class="menu-list">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <a class="d-xl-none d-lg-none" href="<?php echo e(URL::to('/')); ?>/home">Dashboard</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -150,8 +167,7 @@
                             </li>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
-
+                                <a class="nav-link active" href="<?php echo e(URL::to('/')); ?>/home" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
                             </li>
                            <li class="nav-item ">
                                <a class="nav-link" href="<?php echo e(URL::to('/')); ?>/admin/user" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
@@ -182,6 +198,9 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="<?php echo e(URL::to('/')); ?>/admin/dusun">Dusun</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo e(URL::to('/')); ?>/admin/req">Request</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -230,6 +249,7 @@
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
+
     <!-- jquery 3.3.1 -->
     <script src="<?php echo e(URL::to('/')); ?>/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
@@ -254,6 +274,9 @@
     <script src="<?php echo e(URL::to('/')); ?>/assets/libs/js/dashboard-ecommerce.js"></script>
     <script src="<?php echo e(URL::to('/')); ?>/asset/js/main.js"></script>
     <script src="<?php echo e(asset('js/main.js')); ?>"></script>
+
+
+
 </body>
 </div>
 </html>

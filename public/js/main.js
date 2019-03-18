@@ -1,5 +1,8 @@
-function markNotificationAsRead(notificationCount) {
-    if(notificationCount !=='0'){
-        $.get('/markAsRead');
-    }
-}
+$(document).ready(function(){
+$("#notifs").click(function() {
+  $.get('/markAsRead',function(data,status){
+    $("#nums").html(0);
+
+  });
+});
+});
