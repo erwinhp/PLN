@@ -15,7 +15,7 @@
     <?php $numb=$numb+1;?>
 @endforeach
 
-    
+
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div style="width:100%;margin-top: 20px;">
 
@@ -42,7 +42,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="example4" class="table table-striped table-bordered" style="width:100%">
+                    <table id="example1" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>

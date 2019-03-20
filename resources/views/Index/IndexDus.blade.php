@@ -3,55 +3,36 @@
 <?php
 
   $pr='';
-  $pr2='';
-  $pr3='';
  ?>
 <div class="row">
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
 <link rel="stylesheet" href="{{URL::to('/')}}/assets/libs/css/Index.css">
-
+<script src="{{URL::to('/')}}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('js/DD.js') }}"></script>
 
 
 <div class="select">
     <form action="" method="get" >
-    <select name="var2" class="pull-right clearfix"  onchange="this.form.submit();">
+    <select name="var2" class="center-on-page" id="dropkab">
     <option value="0" style="display:none;font-size:20px;">Kabupaten</option>
     @foreach ($Kab as $k)
     <option value="{{$k->id}}">{{$k->kabupaten}}</option>
     @endforeach
     </select>
-    <?php
-    if (isset($_GET['var2'])) {$pr2=$_GET['var2'];}
-    $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
-     ?>
     </form>
 </div>
 
-<div class="select">
-    <form action="" method="get" >
-    <select name="var3" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0" style="display:none;font-size:20px;">Kecamatan</option>
-    @foreach ($kabt as $ke)
-    <option value="{{$ke->id}}">{{$ke->kecamatan}}</option>
-    @endforeach
-    </select>
-    <?php
-    if (isset($_GET['var3'])) {$pr3=$_GET['var3'];}
-    $kect = DB::select('SELECT id,Des,idKec FROM desa WHERE (idKec)=:j', ['j' => $pr3]);
-     ?>
-    </form>
-</div>
 
 <div class="select">
-    <form action="" method="get" >
-    <select name="var4" class="pull-right clearfix"  onchange="this.form.submit();">
-    <option value="0" style="display:none;font-size:20px;">Desa</option>
-    @foreach ($kect as $kec1)
-    <option value="{{$kec1->id}}">{{$kec1->Des}}</option>
-    @endforeach
-    </select>
+  <form action="" method="get" id="ddKec">
+  </form>
+</div>
+
+
+<div class="select">
+    <form action="" method="get" id="dddes">
     <?php
     if (isset($_GET['var4'])) {$pr=$_GET['var4'];}
     $Dest = DB::select('SELECT id,Dusun,idDes FROM dus WHERE (idDes)=:j', ['j' => $pr]);
@@ -67,7 +48,7 @@
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div style="width:100%;margin-top: 20px;">
-    
+
 <div class="button">
   <a href="/admin/dusun/create">
     Buat Dusun
@@ -132,7 +113,6 @@
                 </div>
               </div>
             </div>
-
 
 
 @endsection

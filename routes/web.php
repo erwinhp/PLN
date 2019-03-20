@@ -25,6 +25,18 @@ Route::resource ('admin/prov','inProv');
 });
 
 Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxdesd','ajaxDesdrop');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxkecd','ajaxKecDrop');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxkecd1','ajaxKecDrop1');
+});
+
+Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/kab','inKab');
 });
 
@@ -53,6 +65,14 @@ Route::resource ('admin/dusun','inDus');
 
 Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/user','cuser');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/useradmin','inuseradm');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/useruser','inuseruser');
 });
 
 Route::group(['middleware' => 'auth'], function() {

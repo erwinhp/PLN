@@ -1,5 +1,8 @@
 @extends('layouts.Dash')
 @section('content')
+<script src="{{URL::to('/')}}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('js/DD.js') }}"></script>
+
 <?php
   $pr='';
   $pr2='';
@@ -13,32 +16,23 @@
 
 <div class="select">
     <form action="" method="get" >
-    <select name="var2" class="center-on-page"  onchange="this.form.submit();">
+    <select name="var2" class="center-on-page" id="dropkab1">
     <option value="0" style="display:none;font-size:20px;">Kabupaten</option>
     @foreach ($Kab as $k)
     <option value="{{$k->id}}">{{$k->kabupaten}}</option>
     @endforeach
     </select>
-    <?php
-    if (isset($_GET['var2'])) {$pr2=$_GET['var2'];}
-    $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
-     ?>
     </form>
 </div>
-  
+
+
 <div class="select">
-    <form action="" method="get" >
-    <select id="foo" name="var3" class="center-on-page"  onchange="this.form.submit();">
-    <option value="0" style="display:none;font-size:20px;">Kecamatan</option>
-    @foreach ($kabt as $ke)
-    <option value="{{$ke->id}}">{{$ke->kecamatan}}</option>
-    @endforeach
-    </select>
+  <form action="" method="get" id="ddKec">
     <?php
     if (isset($_GET['var3'])) {$pr3=$_GET['var3'];}
     $kect = DB::select('SELECT id,Des,idKec FROM desa WHERE (idKec)=:j', ['j' => $pr3]);
      ?>
-    </form>
+  </form>
 </div>
 
 
@@ -68,6 +62,8 @@
   <a >TOTAL DESA = <?php echo $numb; ?></a>
   <div class="mask1"></div>
 </div>
+
+
 
     <span class="pull-right clearfix"></span>
         <div class="card">
@@ -112,8 +108,10 @@
               </div>
             </div>
 
-
+<script src="{{ asset('js/DD.js') }}"></script>
 <!--
 <script src="{{URL::to('/')}}/assets/libs/js/Index.js"></script>
 -->
+
+
 @endsection

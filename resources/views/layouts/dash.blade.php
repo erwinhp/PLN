@@ -117,15 +117,10 @@
                                   @can('isUser')
                                     <h5 class="mb-0 text-white nav-user-name">User</h5>
                                   @endcan
-                                  <?php
-                                    $splitName = explode(' ', auth()->user()->name, 3);
-                                    $first_name = $splitName[1];
-                                    list($firstName, $lastName) = array_pad(explode(' ', trim(auth()->user()->name)), 2, null)
-                                    ?>
-                                  <!--  <span class="status"></span><span class="ml-2">{{$first_name}}</span>-->
+    
                                 </div>
                                 <?php
-                                $a =auth()->user()->id
+                                $a =auth()->user()->id;
                                 ?>
                                 @can('isAdmin')
                                 <a class="dropdown-item" href="{{URL::to('/')}}/admin/user/{{$a}}/edit"><i class="fas fa-user mr-2"></i>Pengguna</a>

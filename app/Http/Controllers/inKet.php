@@ -62,7 +62,7 @@ class inKet extends Controller
   $ket -> idDus = $request->idDus;
 
   $ket->save();
-  return redirect()->action('inKet@index');
+  return redirect()->action('inKet@create');
   //return redirect()->action('tugasC@index');
   }
 
@@ -143,7 +143,7 @@ class inKet extends Controller
     $ket=Ket::all();
   //redirect lagi
 
-  return redirect()->action('inKet@index');
+  return redirect()->action('inDus@index');
 
   }
 }

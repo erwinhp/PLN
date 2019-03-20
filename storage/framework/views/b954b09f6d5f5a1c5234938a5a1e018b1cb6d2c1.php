@@ -45,21 +45,18 @@
 
                       <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                         <li class="nav-item dropdown notification" >
-                          <a class="nav-link nav-icons" href="#"  id="markAsRead" onclick="markNotificationAsRead('<?php echo e(count(auth()->user()->unreadNotifications)); ?>')" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="glyphicon glyphicon-globe"></span>
+                          <a class="nav-link nav-icons" href="#"  id="notifs"  data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="fas fa-fw fa-bell" onclick="markNotificationAsRead('<?php echo e(count(auth()->user()->unreadNotifications)); ?>')"></i> <span class="glyphicon glyphicon-globe" ></span>
 
-                            <span class="badge"><?php echo e(count(auth()->user()->unreadNotifications)); ?></span>
+                            <span class="badge" id="nums"><?php echo e(count(auth()->user()->unreadNotifications)); ?></span>
                           </a>
 
 
-                          <ul class="nav navbar-nav navbar-right">
-                                  <li role="presentation" class="dropdown"  >
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                      <i class="fa fa-globe"></i>
-                                      <span class="badge bg-green"><?php echo e(count(auth()->user()->unreadNotifications)); ?></span>
-                                    </a>
-                                    <ul class="dropdown-menu list-unstyled msg_list"  id="notification" role="menu"  onclick="markPostAsRead(<?php echo e(count(auth()->user()->unreadNotifications)); ?>)">
-                                      <li>
+                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown" >
+                                <li>
+                                    <div class="notification-title"> Notification</div>
+                                    <div class="notification-list">
+                                        <div class="list-group">
                                           <?php $__currentLoopData = auth()->user()->unreadNotifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <a href="<?php echo e(URL::to('/')); ?>/req/<?php echo e($notification->data['req']['id']); ?>" class="list-group-item list-group-item-action active">
                                                 <div class="notification-info">
@@ -70,20 +67,15 @@
                                                 </div>
                                             </a>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                          </li>
-            </ul>
-          </li>.
-        </ul>
-
+                                          </div>
+                                        </div>
+                                </li>
 
                                 <li>
                                     <div class="list-footer"> <a href="<?php echo e(URL::to('/')); ?>/admin/notifall">View all notifications</a></div>
                                 </li>
                             </ul>
                         </li>
-                      </nav>
-                    </div>
-                  </div>
                         <?php endif; ?>
                         <!-- NOTIFICATION USER-->
                         <!--
@@ -117,7 +109,7 @@
                         <li class="nav-item dropdown connection">
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-icons" href="<?php echo e(URL::to('/')); ?>/markAsRead" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
+                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" ><i class="fa fa-bars"></i></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
@@ -257,6 +249,7 @@
     <!-- end main wrapper  -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
+
     <!-- jquery 3.3.1 -->
     <script src="<?php echo e(URL::to('/')); ?>/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
@@ -281,6 +274,9 @@
     <script src="<?php echo e(URL::to('/')); ?>/assets/libs/js/dashboard-ecommerce.js"></script>
     <script src="<?php echo e(URL::to('/')); ?>/asset/js/main.js"></script>
     <script src="<?php echo e(asset('js/main.js')); ?>"></script>
+
+
+
 </body>
 </div>
 </html>

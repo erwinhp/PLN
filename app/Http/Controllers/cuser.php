@@ -14,7 +14,7 @@ class cuser extends Controller
     }
     //$user=User::all();
     $user = User::where('Status', '=', 0)->get();
-    $user1 = User::where('Status', '==', 1)->get();
+    $user1 = User::where('Status', '=', 1)->get();
     return view('index/indexUser')->with('User',$user)->with('User1',$user1);
   }
 
