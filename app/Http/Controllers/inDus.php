@@ -7,6 +7,7 @@ use App\Desa;
 use App\Kab;
 use App\Kec;
 use App\Dus;
+use App\Ket;
 use Illuminate\Support\Facades\Gate;
 class inDus extends Controller
 {
@@ -18,7 +19,8 @@ class inDus extends Controller
     }
     $dus=Dus::all();
     $Kab=Kab::all();
-    return view('index.indexDus')->with('Dus',$dus)->with('Kab',$Kab);
+    $ket=Ket::all();
+    return view('index.indexDus')->with('Dus',$dus)->with('Kab',$Kab)->with('Ket',$ket);
 
   }
 

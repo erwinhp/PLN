@@ -2,28 +2,34 @@
 @section('content')
 
 <?php
+  session_start();
   $pr='';
   $pr2='';
   $pr3='';
   $pr4='';
+  $duss='';
 
-//$_COOKIE['Getids'] = $_GET['idDus'];
-$ses = $_REQUEST['idDus'];
-$_SESSION['GD'] = $ses;
- //$_SESSION['Getz'] = $ses;
- //
+ ?>
 
+
+ <?php
+ if (isset($_GET['idDus']))
+ {
+  $duss=$_GET['idDus'];
+  $_SESSION['ssidDus'] = $duss;
+ }
+ else {
+   $duss = $_SESSION['ssidDus'];
+
+ }
  ?>
 
 <div class="row">
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
-
-
-
     <?php
-    $Dsn = DB::select('SELECT id,RtRw,PotPel,Keterangan,idDus FROM ket WHERE (idDus)=:j', ['j' => $_SESSION['GD']]);
+    $Dsn = DB::select('SELECT id,RtRw,PotPel,Keterangan,idDus FROM ket WHERE (idDus)=:j', ['j' => $duss]);
      ?>
 
 

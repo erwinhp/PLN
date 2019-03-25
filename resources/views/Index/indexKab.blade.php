@@ -47,6 +47,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>KABUPATEN</th>
+                                <th>Persentase Listrik PLN</th>
                                 <th>EDIT</th>
                                 <th>DELETE</th>
                             </tr>
@@ -61,6 +62,45 @@
                             </th>
 
                         <th>{{$k->kabupaten}}</th>
+                        <th>
+                          <?php
+                          $hasil=0;
+                          $PLN=0;
+                          $TOTAL=0;
+                          ?>
+                        @foreach ($Kec as $ke)
+                          @if ($ke->idKab===$k->id)
+                            @foreach ($Des as $dez)
+                              @if($dez->idKec===$ke->id)
+                                @foreach($Dus as $duz)
+                                  @if ($duz->idDes===$dez->id)
+                                    @foreach($Ket as $ketz)
+                                      @if ($ketz->idDus===$duz->id)
+                                        <?php
+                                          $TOTAL=$TOTAL+1;
+                                        ?>
+                                        @if ($ketz->Keterangan==="PLN")
+                                        <?php
+                                          $PLN=$PLN+1;
+                                        ?>
+                                        @endif
+                                      @endif
+                                    @endforeach
+                                  @endif
+                                @endforeach
+                              @endif
+                            @endforeach
+                          @endif
+                        @endforeach
+                        <?php
+                        if ($PLN==0) {
+                          echo "0%";
+                        }else {
+                          $hasil=($PLN/$TOTAL)*100;
+                          echo (round($hasil))."%";
+                        }
+                        ?>
+                        </th>
                         <th><form class="" action="/admin/prov/{{$k->id}}" method="post">
                         <a href="/admin/kab/{{$k->id}}/edit" class="btn btn-xs btn-primary">EDIT</a>
                         </form>

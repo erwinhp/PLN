@@ -74,6 +74,7 @@
                             <tr>
                               <th>No</th>
                                 <th>DESA</th>
+                                <th>Persentase Listrik PLN</th>
                                 <th>EDIT</th>
                                 <th>DELETE</th>
                             </tr>
@@ -88,6 +89,46 @@
                             </th>
 
                         <th>{{$de->Des}}</th>
+
+                        <th>
+                          <?php
+                          $hasil=0;
+                          $PLN=0;
+                          $TOTAL=0;
+                          ?>
+
+
+                                @foreach($Dus as $duz)
+                                  @if ($duz->idDes===$de->id)
+                                    @foreach($Ket as $ketz)
+                                      @if ($ketz->idDus===$duz->id)
+                                        <?php
+                                          $TOTAL=$TOTAL+1;
+                                        ?>
+                                        @if ($ketz->Keterangan==="PLN")
+                                        <?php
+                                          $PLN=$PLN+1;
+                                        ?>
+                                        @endif
+                                      @endif
+                                    @endforeach
+                                  @endif
+                                @endforeach
+
+
+
+                        <?php
+                        if ($PLN==0) {
+                          echo "0%";
+                        }else {
+                          $hasil=($PLN/$TOTAL)*100;
+                          echo (round($hasil))."%";
+                        }
+                        ?>
+                        </th>
+
+
+
                         <th><form class="" action="/admin/des/{{$de->id}}" method="post">
                         <a href="/admin/des/{{$de->id}}/edit" class="btn btn-xs btn-primary">EDIT</a>
                         </form></th>

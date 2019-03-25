@@ -19,8 +19,7 @@ class inKet extends Controller
     }
     $ket=Ket::all();
     $Kab=Kab::all();
-    $value = session('idDus');
-    return view('index.indexKet')->with('Ket',$ket)->with('Kab',$Kab)->with('pr4',$value);
+    return view('index.indexKet')->with('Ket',$ket)->with('Kab',$Kab);
 
   }
 
@@ -60,9 +59,8 @@ class inKet extends Controller
   $ket -> PotPel = $request->PotPel;
   $ket -> Keterangan = $request->Keterangan;
   $ket -> idDus = $request->idDus;
-
   $ket->save();
-  return redirect()->action('inKet@create');
+  return redirect()->action('inKet@index');
   //return redirect()->action('tugasC@index');
   }
 
@@ -143,7 +141,7 @@ class inKet extends Controller
     $ket=Ket::all();
   //redirect lagi
 
-  return redirect()->action('inDus@index');
+  return redirect()->action('inKet@index');
 
   }
 }

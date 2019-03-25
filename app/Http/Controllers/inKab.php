@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kab;
+use App\kec;
+use App\Desa;
+use App\Dus;
+use App\Ket;
 use Hash;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +20,11 @@ class inKab extends Controller
        return response("404", 404);
     }
     $Kab=Kab::all();
-    return view('index.IndexKab')->with('Kab',$Kab);
+    $kec=Kec::all();
+    $desa=Desa::all();
+    $dus=Dus::all();
+    $ket=Ket::all();
+    return view('index.IndexKab')->with('Kab',$Kab)->with('Kec',$kec)->with('Des',$desa)->with('Dus',$dus)->with('Ket',$ket);
   }
 
   /**

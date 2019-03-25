@@ -26,8 +26,9 @@ class inReq extends Controller
     $Req=req::all();
     $Kab=Kab::all();
     $uid=Auth::id();
+    $dus=Dus::all();
 
-    return view('index.indexReq')->with('req',$Req)->with('Kab',$Kab)->with('UID',$uid);
+    return view('index.indexReq')->with('req',$Req)->with('Kab',$Kab)->with('UID',$uid)->with('Dus',$dus);
   }
 
   /**

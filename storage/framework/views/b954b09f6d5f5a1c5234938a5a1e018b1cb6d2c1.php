@@ -118,15 +118,10 @@
                                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isUser')): ?>
                                     <h5 class="mb-0 text-white nav-user-name">User</h5>
                                   <?php endif; ?>
-                                  <?php
-                                    $splitName = explode(' ', auth()->user()->name, 3);
-                                    $first_name = $splitName[1];
-                                    list($firstName, $lastName) = array_pad(explode(' ', trim(auth()->user()->name)), 2, null)
-                                    ?>
-                                  <!--  <span class="status"></span><span class="ml-2"><?php echo e($first_name); ?></span>-->
+    
                                 </div>
                                 <?php
-                                $a =auth()->user()->id
+                                $a =auth()->user()->id;
                                 ?>
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                                 <a class="dropdown-item" href="<?php echo e(URL::to('/')); ?>/admin/user/<?php echo e($a); ?>/edit"><i class="fas fa-user mr-2"></i>Pengguna</a>

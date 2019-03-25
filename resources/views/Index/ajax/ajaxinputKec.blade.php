@@ -6,12 +6,13 @@
 
 <?php
 $pr2='';
-if (isset($_GET['valueKab'])) {$pr2=$_GET['valueKab'];}
+if (isset($_GET['valuekec'])) {$pr2=$_GET['valuekec'];}
 $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' => $pr2]);
  ?>
 
- <select class="form-control input-sm"name="idKec" value="{{ old('idKec') }}" required>
+ <select class="form-control input-sm"name="idKec" value="{{ old('idKec') }}" id="dropinkec" required>
    @foreach ($kabt as $u)
+    <option value="0" style="display:none;font-size:20px;">Kecamatan</option>
      <option value="{{$u->id}}"->{{$u->kecamatan}}</option>
    @endforeach
  </select >

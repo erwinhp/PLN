@@ -59,6 +59,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>KECAMATAN</th>
+                                <th>Persentase Listrik PLN</th>
                                 <th>EDIT</th>
                                 <th>DELETE</th>
                             </tr>
@@ -73,6 +74,47 @@
                             </th>
 
                         <th>{{$ke->kecamatan}}</th>
+
+
+                        <th>
+                          <?php
+                          $hasil=0;
+                          $PLN=0;
+                          $TOTAL=0;
+                          ?>
+
+                            @foreach ($Des as $dez)
+                              @if($dez->idKec===$ke->id)
+                                @foreach($Dus as $duz)
+                                  @if ($duz->idDes===$dez->id)
+                                    @foreach($Ket as $ketz)
+                                      @if ($ketz->idDus===$duz->id)
+                                        <?php
+                                          $TOTAL=$TOTAL+1;
+                                        ?>
+                                        @if ($ketz->Keterangan==="PLN")
+                                        <?php
+                                          $PLN=$PLN+1;
+                                        ?>
+                                        @endif
+                                      @endif
+                                    @endforeach
+                                  @endif
+                                @endforeach
+                              @endif
+                            @endforeach
+
+
+                        <?php
+                        if ($PLN==0) {
+                          echo "0%";
+                        }else {
+                          $hasil=($PLN/$TOTAL)*100;
+                          echo (round($hasil))."%";
+                        }
+                        ?>
+                        </th>
+
                         <th><form class="" action="/admin/kec/{{$ke->id}}" method="post">
                         <div class="container">
                         <a href="/admin/kec/{{$ke->id}}/edit" class="btn btn-xs btn-primary">EDIT</a>

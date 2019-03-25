@@ -1,8 +1,8 @@
 @extends('layouts.Dash')
 @section('content')
 <?php
-
   $pr='';
+  $tmp='';
  ?>
 <div class="row">
     <!-- ============================================================== -->
@@ -70,6 +70,7 @@
                             <tr>
                               <th>No</th>
                                 <th>DUSUN</th>
+                                <th>Persentase Listrik PLN</th>
                                 <th>DETAIL DUSUN</th>
                                 <th>EDIT</th>
                                 <th>DELETE</th>
@@ -85,10 +86,51 @@
                               ?>
                         </th>
                         <th>{{$de->Dusun}}</th>
+
+
                         <th>
+                          <?php
+                          $hasil=0;
+                          $PLN=0;
+                          $TOTAL=0;
+                          ?>
+
+
+
+                                    @foreach($Ket as $ketz)
+                                      @if ($ketz->idDus===$de->id)
+                                        <?php
+                                          $TOTAL=$TOTAL+1;
+                                        ?>
+                                        @if ($ketz->Keterangan==="PLN")
+                                        <?php
+                                          $PLN=$PLN+1;
+                                        ?>
+                                        @endif
+                                      @endif
+                                    @endforeach
+
+
+
+
+                        <?php
+                        if ($PLN==0) {
+                          echo "0%";
+                        }else {
+                          $hasil=($PLN/$TOTAL)*100;
+                          echo (round($hasil))."%";
+                        }
+                        ?>
+                        </th>
+
+
+                        <th>
+
+
                             <form method="get" action="{{URL::to('/')}}/admin/ket">
                                 <input type="hidden" name="idDus" value="{{$de->id}}">
                                 <input type="submit" class="btn btn-xs btn-primary" value="Detail">
+
                             </form>
 
                           </th>

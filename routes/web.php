@@ -25,6 +25,18 @@ Route::resource ('admin/prov','inProv');
 });
 
 Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxinputdess','ajaxdesainput');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxinputduss','ajaxdusuninput');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxinputkecs','ajaxkecinput');
+});
+
+Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/ajaxdesd','ajaxDesdrop');
 });
 

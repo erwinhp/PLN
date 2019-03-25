@@ -16,7 +16,7 @@ class Req extends Migration
       Schema::create('req', function (Blueprint $table) {
       $table->increments('id');
       $table->string('RtRw');
-      $table->string('Status')->default('Dilihat');
+      $table->string('Status')->default('Akan Ditinjau');
       $table->string('PotPel');
       $table->integer('idUser')->unsigned();
       $table->foreign('idUser')->references('id')->on('Dus')->onDelete('cascade');

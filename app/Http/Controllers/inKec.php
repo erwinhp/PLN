@@ -7,6 +7,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\kec;
 use App\Kab;
+use App\Desa;
+use App\Dus;
+use App\Ket;
 use DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -21,7 +24,10 @@ class inKec extends Controller
     }
         $kec=kec::all();
         $Kab=Kab::all();
-          return view('index.IndexKec')->with('kec',$kec)->with('Kab',$Kab);
+        $desa=Desa::all();
+        $dus=Dus::all();
+        $ket=Ket::all();
+          return view('index.IndexKec')->with('kec',$kec)->with('Kab',$Kab)->with('Des',$desa)->with('Dus',$dus)->with('Ket',$ket);
 
 
 

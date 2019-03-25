@@ -10,26 +10,51 @@
                 <div class="panel-bSody">
                     <form class="form-horizontal" role="form" method="post" action="/admin/dusun/{{$Dus->id}}" >
 
+                      <script src="{{URL::to('/')}}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+                      <script src="{{ asset('js/DD.js') }}"></script>
 
                         {{ csrf_field() }}
 
 
                         <div class="form-group{{ $errors->has('idKab') ? ' has-error' : '' }}">
-                    <label for="idDes" class="col-md-4 control-label">Desa</label>
+                    <label for="idKab" class="col-md-4 control-label">Kabupaten</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm"name="idDes" value="{{$Dus->idDes }}" required>
-                        @foreach ($Desa as $u)
-                          <option value="{{$u->id}}"->{{$u->Des}}</option>
+                      <select class="form-control input-sm" id="dropkab2" name="idKab" value="{{ old('idKab') }}" required>
+                        @foreach ($Kab as $u)
+                        <option value="0" style="display:none;font-size:20px;">Kabupaten</option>
+                          <option value="{{$u->id}}"->{{$u->kabupaten}}</option>
                         @endforeach
                       </select >
-                        @if ($errors->has('idDes'))
+                        @if ($errors->has('idKab'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('idDes') }}</strong>
+                                <strong>{{ $errors->first('idKab') }}</strong>
                             </span>
                         @endif
                     </div>
-                </div>
+                  </div>
+
+
+                  <div class="form-group{{ $errors->has('idKec') ? ' has-error' : '' }}">
+                  <label for="idKec" class="col-md-4 control-label">Kecamatan</label>
+
+                  <div class="col-md-6" id="ddKec">
+                  <select class="form-control input-sm"name="idKec" value="{{ old('idKec') }}" required>
+                  </select>
+                  </div>
+              </div>
+
+
+<div class="form-group{{ $errors->has('idKab') ? ' has-error' : '' }}">
+<label for="idDes" class="col-md-4 control-label">Desa</label>
+
+<div class="col-md-6" id="dddes">
+<select class="form-control input-sm"name="idDes" value="{{$Dus->idDes }}" required>
+
+</select >
+</div>
+</div>
+
 
 
                         <div class="form-group{{ $errors->has('har_bes') ? ' has-error' : '' }}">

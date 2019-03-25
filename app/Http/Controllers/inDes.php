@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Desa;
 use App\Kab;
 use App\Kec;
+use App\Dus;
+use App\Ket;
 use Hash;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Gate;
@@ -21,7 +23,9 @@ class inDes extends Controller
       $des=Desa::all();
       $kec=kec::all();
       $kab=Kab::all();
-      return view('Index.IndexDesa')->with('Desa',$des)->with('Kec',$kec)->with('Kab',$kab);
+      $dus=Dus::all();
+      $ket=Ket::all();
+      return view('Index.IndexDesa')->with('Desa',$des)->with('Kec',$kec)->with('Kab',$kab)->with('Dus',$dus)->with('Ket',$ket);
 
     }
 

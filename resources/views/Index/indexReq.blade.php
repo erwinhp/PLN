@@ -28,6 +28,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Dusun</th>
                                 <th>RtRw</th>
                                 <th>Potensi Pelanggan</th>
                                 <th>Status</th>
@@ -43,7 +44,13 @@
                               echo $num;
                               ?>
                             </th>
-
+                            <th>
+                        @foreach ($Dus as $du)
+                          @if (($ke->idDus)===($du->id))
+                          {{$du->Dusun}}
+                          @endif
+                        @endforeach
+                      </th>
                         <th>{{$ke->RtRw}}</th>
                         <th>{{$ke->PotPel}}</th>
                         <th>{{$ke->Status}}</th>

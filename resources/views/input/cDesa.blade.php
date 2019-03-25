@@ -19,7 +19,7 @@
                     <label for="idKab" class="col-md-4 control-label">Kabupaten</label>
 
                     <div class="col-md-6">
-                      <select class="form-control input-sm" id="dropkab1" name="idKab" value="{{ old('idKab') }}" required>
+                      <select class="form-control input-sm" id="dropkab2" name="idKab" value="{{ old('idKab') }}" required>
                         @foreach ($Kab as $u)
                         <option value="0" style="display:none;font-size:20px;">Kabupaten</option>
                           <option value="{{$u->id}}"->{{$u->kabupaten}}</option>
@@ -73,4 +73,7 @@
         </div>
     </div>
 </div>
+
+
+
 @endsection

@@ -34,11 +34,11 @@
                         <th>{{$req->RtRw}}</th>
                         <th>{{$req->PotPel}}</th>
                         <th>{{$req->Status}}</th>
-                        <th><form class="" action="/req/{{$req->id}}" method="post">
-                        <a href="/req/{{$req->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
+                        <th><form class="" action="/admin/req/{{$req->id}}" method="post">
+                        <a href="/admin/req/{{$req->id}}/edit" class="btn btn-xs btn-primary">Edit</a>
                         </form></th>
                       <th>
-                        <form class="" action="/req/{{$req->id}}" method="post">
+                        <form class="" action="/admin/req/{{$req->id}}" method="post">
                           <input type="hidden" name="_method" value="delete">
                           <input type="hidden" name="_token" value="{{csrf_token()}}">
                           <input type="submit" class="btn btn-xs btn-primary" value="delete">
