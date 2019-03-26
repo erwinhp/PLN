@@ -46,16 +46,28 @@
     </form>
 </div>
 
-<?php $numb=0;?>
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div style="width:100%;margin-top: 20px;">
 
+  <?php $numb=0;?>
+  @forelse ($Dest as $de)
+      @if($de->Status!="Selesai")
+        <?php $numb=$numb+1;?>
+        @endif
+    @empty
+      @foreach($req as $reqz)
+        @if($reqz->Status!="Selesai")
+          <?php $numb=$numb+1;?>
+        @endif
+    @endforeach
+  @endforelse
 
 <div class="button1">
-  <a>TOTAL REQUEST = <?php echo $num; ?></a>
+  <a>TOTAL REQUEST = <?php echo $numb; ?></a>
   <div class="mask1"></div>
 </div>
+
 
     <span class="pull-right clearfix"></span>
         <div class="card">
