@@ -42,6 +42,7 @@
 
                                                         <div class="col-md-6" id="ddKec">
                                                         <select class="form-control input-sm"name="idKec" value="{{ old('idKec') }}" required>
+                                                          <option>Kecamatan</option>
                                                         </select>
                                                         </div>
                                                     </div>
@@ -52,7 +53,7 @@
 
                                                 <div class="col-md-6" id="dddes">
                                                   <select class="form-control input-sm"name="idDes" value="{{$req->idDes}}" required>
-
+                                                    <option>Desa</option>
                                                   </select >
                                                 </div>
                                             </div>
@@ -62,8 +63,12 @@
                                         <label for="idDus" class="col-md-4 control-label">Dusun</label>
 
                                         <div class="col-md-6" id="dddus">
-                                          <select class="form-control input-sm"name="idDus" value="{{ old('idDus') }}" required>
-
+                                          <select class="form-control input-sm"name="idDus" value="{{$req->idDus }}" required>
+                                            @foreach($Dus as $duz)
+                                              @if ($req->idDus===$duz->id)
+                                                <option value="{{$req->idDus}}">{{$duz->Dusun}}</option>
+                                              @endif
+                                            @endforeach
                                           </select >
                                         </div>
                                     </div>

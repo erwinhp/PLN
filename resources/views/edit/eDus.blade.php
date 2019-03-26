@@ -40,6 +40,7 @@
 
                   <div class="col-md-6" id="ddKec">
                   <select class="form-control input-sm"name="idKec" value="{{ old('idKec') }}" required>
+                    <option>Kecamatan</option>
                   </select>
                   </div>
               </div>
@@ -50,7 +51,11 @@
 
 <div class="col-md-6" id="dddes">
 <select class="form-control input-sm"name="idDes" value="{{$Dus->idDes }}" required>
-
+  @foreach($Desa as $dez)
+    @if ($Dus->idDes===$dez->id)
+      <option value="{{$Dus->idDes}}">{{$dez->Des}}</option>
+    @endif
+  @endforeach
 </select >
 </div>
 </div>

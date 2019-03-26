@@ -29,6 +29,10 @@ Route::resource ('admin/ajaxinputdess','ajaxdesainput');
 });
 
 Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxdusd','ajaxdropdus');
+});
+
+Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/ajaxinputduss','ajaxdusuninput');
 });
 
@@ -41,11 +45,19 @@ Route::resource ('admin/ajaxdesd','ajaxDesdrop');
 });
 
 Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxdesd1','ajaxdropdes1');
+});
+
+Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/ajaxkecd','ajaxKecDrop');
 });
 
 Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/ajaxkecd1','ajaxKecDrop1');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/ajaxkecd2','ajaxkecdrop2');
 });
 
 Route::group(['middleware' => 'auth'], function() {

@@ -29,6 +29,7 @@
 <div class="select">
   <form action="" method="get" id="ddKec">
     <?php
+      //var 3=ajaxdropKec1 name of the select
     if (isset($_GET['var3'])) {$pr3=$_GET['var3'];}
     $kect = DB::select('SELECT id,Des,idKec FROM desa WHERE (idKec)=:j', ['j' => $pr3]);
      ?>

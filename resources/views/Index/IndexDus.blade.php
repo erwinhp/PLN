@@ -34,6 +34,7 @@
 <div class="select">
     <form action="" method="get" id="dddes">
     <?php
+    //var4= name of the select in the AjaxDropDes
     if (isset($_GET['var4'])) {$pr=$_GET['var4'];}
     $Dest = DB::select('SELECT id,Dusun,idDes FROM dus WHERE (idDes)=:j', ['j' => $pr]);
      ?>

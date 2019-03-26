@@ -17,5 +17,3 @@ $kabt = DB::select('SELECT id,kecamatan,idKab FROM kec WHERE (idKab)=:j', ['j' =
 @endforeach
 </select>
 @endsection
-
-</script>

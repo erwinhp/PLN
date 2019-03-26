@@ -1,6 +1,7 @@
 @extends('layouts.dash')
 
 @section('content')
+
 <div class="container">
   <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -41,6 +42,7 @@
 
                                 <div class="col-md-6" id="ddKec">
                                 <select class="form-control input-sm"name="idKec" value="{{ old('idKec') }}" required>
+                                  <option>Kecamatan</option>
                                 </select>
                                 </div>
                             </div>
@@ -51,7 +53,7 @@
 
                         <div class="col-md-6" id="dddes">
                           <select class="form-control input-sm"name="idDes" value="{{$Ket->idDes}}" required>
-
+                          <option>Desa</option>
                           </select >
                         </div>
                     </div>
@@ -61,7 +63,12 @@
                 <label for="idDus" class="col-md-4 control-label">Dusun</label>
 
                 <div class="col-md-6" id="dddus">
-                  <select class="form-control input-sm"name="idDus" value="{{ old('idDus') }}" required>
+                  <select class="form-control input-sm"name="idDus" value="{{$Ket->idDus}}" required>
+                    @foreach($Dus as $duz)
+                      @if ($Ket->idDus===$duz->id)
+                        <option value="{{$Ket->idDus}}">{{$duz->Dusun}}</option>
+                      @endif
+                    @endforeach
 
                   </select >
                 </div>
