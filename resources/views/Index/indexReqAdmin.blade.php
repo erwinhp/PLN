@@ -47,18 +47,13 @@
 </div>
 
 <?php $numb=0;?>
-@foreach ($req as $de)
-  @if($de->Status!="Selesai")
-    <?php $numb=$numb+1;?>
-  @endif
-@endforeach
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div style="width:100%;margin-top: 20px;">
 
 
 <div class="button1">
-  <a>TOTAL REQUEST = <?php echo $numb; ?></a>
+  <a>TOTAL REQUEST = <?php echo $num; ?></a>
   <div class="mask1"></div>
 </div>
 
