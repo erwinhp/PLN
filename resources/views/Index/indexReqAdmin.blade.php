@@ -10,7 +10,7 @@
     <!-- ============================================================== -->
     <!-- fixed header  -->
     <!-- ============================================================== -->
-<link rel="stylesheet" href="{{URL::to('/')}}/assets/libs/css/Index.css">
+<link rel="stylesheet" href="{{URL::to('/')}}/assets/libs/css/Indexreq.css">
 <script src="{{URL::to('/')}}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
 <script src="{{ asset('js/DD.js') }}"></script>
 
