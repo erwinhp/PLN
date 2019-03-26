@@ -53,7 +53,7 @@
 </div>
 
 <div class="button">
-  <a href="/admin/dus/create">
+  <a href="/admin/dusun/create">
     Buat Dusun
   </a>
   <div class="mask"></div>
