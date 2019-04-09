@@ -96,13 +96,15 @@
                           $hasil=0;
                           $PLN=0;
                           $TOTAL=0;
+                          $dusz = DB::select('SELECT id,Dusun,idDes FROM Dus WHERE (idDes)=:j', ['j' => $de->id]);
                           ?>
 
 
-                                @foreach($Dus as $duz)
-                                  @if ($duz->idDes===$de->id)
-                                    @foreach($Ket as $ketz)
-                                      @if ($ketz->idDus===$duz->id)
+                                @foreach($dusz as $duz)
+                                <?php
+                                  $ketsz = DB::select('SELECT id,RtRw,PotPel,Keterangan,idDus FROM Ket WHERE (idDus)=:j', ['j' => $duz->id]);
+                                ?>
+                                    @foreach($ketsz as $ketz)
                                         <?php
                                           $TOTAL=$TOTAL+1;
                                         ?>
@@ -111,9 +113,7 @@
                                           $PLN=$PLN+1;
                                         ?>
                                         @endif
-                                      @endif
                                     @endforeach
-                                  @endif
                                 @endforeach
 
 

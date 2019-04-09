@@ -67,15 +67,21 @@
                           $hasil=0;
                           $PLN=0;
                           $TOTAL=0;
+                          $kect = DB::select('SELECT id,kecamatan,idKab FROM Kec WHERE (idKab)=:j', ['j' => $k->id]);
                           ?>
-                        @foreach ($Kec as $ke)
-                          @if ($ke->idKab===$k->id)
-                            @foreach ($Des as $dez)
-                              @if($dez->idKec===$ke->id)
-                                @foreach($Dus as $duz)
-                                  @if ($duz->idDes===$dez->id)
-                                    @foreach($Ket as $ketz)
-                                      @if ($ketz->idDus===$duz->id)
+                        @foreach ($kect as $ke)
+                          <?php
+                            $desz = DB::select('SELECT id,Des,idKec FROM Desa WHERE (idKec)=:j', ['j' => $ke->id]);
+                          ?>
+                            @foreach ($desz as $dez)
+                            <?php
+                              $dusz = DB::select('SELECT id,Dusun,idDes FROM Dus WHERE (idDes)=:j', ['j' => $dez->id]);
+                            ?>
+                                @foreach($dusz as $duz)
+                                  <?php
+                                    $ketsz = DB::select('SELECT id,RtRw,PotPel,Keterangan,idDus FROM Ket WHERE (idDus)=:j', ['j' => $duz->id]);
+                                  ?>
+                                    @foreach($ketsz as $ketz)
                                         <?php
                                           $TOTAL=$TOTAL+1;
                                         ?>
@@ -84,13 +90,9 @@
                                           $PLN=$PLN+1;
                                         ?>
                                         @endif
-                                      @endif
                                     @endforeach
-                                  @endif
                                 @endforeach
-                              @endif
                             @endforeach
-                          @endif
                         @endforeach
                         <?php
                         if ($PLN==0) {

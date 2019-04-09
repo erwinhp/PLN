@@ -94,11 +94,13 @@
                           $hasil=0;
                           $PLN=0;
                           $TOTAL=0;
+                            $ketsz = DB::select('SELECT id,RtRw,PotPel,Keterangan,idDus FROM Ket WHERE (idDus)=:j', ['j' => $de->id]);
                           ?>
 
 
 
-                                    @foreach($Ket as $ketz)
+
+                                    @foreach($ketsz as $ketz)
                                       @if ($ketz->idDus===$de->id)
                                         <?php
                                           $TOTAL=$TOTAL+1;

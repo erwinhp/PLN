@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+
     <link rel="icon" href="{{URL::to('/')}}/pln.png">
     <link rel="stylesheet" href="{{URL::to('/')}}/assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="{{URL::to('/')}}/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -30,7 +31,7 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="../home">STABILITAS RD KALSEL</a>
+                <a class="navbar-brand" href="../home"><img src="{{URL::to('/')}}/iconLogo.png" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -117,7 +118,7 @@
                                   @can('isUser')
                                     <h5 class="mb-0 text-white nav-user-name">User</h5>
                                   @endcan
-    
+
                                 </div>
                                 <?php
                                 $a =auth()->user()->id;
@@ -162,12 +163,13 @@
                             <li class="nav-item ">
                                 <a class="nav-link active" href="{{URL::to('/')}}/home" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{URL::to('/')}}/admin/chart" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-chart-pie"></i>  Chart</a>
+                             </li>
                            <li class="nav-item ">
                                <a class="nav-link" href="{{URL::to('/')}}/admin/user" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../pages/data-tables.html" data-toggle="" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Grafik</a>
-                            </li>
+
                             @endcan
                             @can('isUser')
                             <li class="nav-item ">

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+
     <link rel="icon" href="<?php echo e(URL::to('/')); ?>/pln.png">
     <link rel="stylesheet" href="<?php echo e(URL::to('/')); ?>/assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="<?php echo e(URL::to('/')); ?>/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -118,7 +119,7 @@
                                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isUser')): ?>
                                     <h5 class="mb-0 text-white nav-user-name">User</h5>
                                   <?php endif; ?>
-    
+
                                 </div>
                                 <?php
                                 $a =auth()->user()->id;
@@ -164,12 +165,13 @@
                             <li class="nav-item ">
                                 <a class="nav-link active" href="<?php echo e(URL::to('/')); ?>/home" data-toggle="" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-home"></i>Beranda <span class="badge badge-success">6</span></a>
                             </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="<?php echo e(URL::to('/')); ?>/admin/chart" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Chart</a>
+                             </li>
                            <li class="nav-item ">
                                <a class="nav-link" href="<?php echo e(URL::to('/')); ?>/admin/user" data-toggle="" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-user mr-2"></i>  Pengguna</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="../pages/data-tables.html" data-toggle="" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Grafik</a>
-                            </li>
+
                             <?php endif; ?>
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isUser')): ?>
                             <li class="nav-item ">

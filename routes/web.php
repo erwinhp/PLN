@@ -21,6 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware' => 'auth'], function() {
+Route::resource ('admin/chart','ControllChart');
+});
+
+Route::group(['middleware' => 'auth'], function() {
 Route::resource ('admin/prov','inProv');
 });
 
